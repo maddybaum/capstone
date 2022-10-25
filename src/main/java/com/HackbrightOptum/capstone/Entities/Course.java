@@ -21,7 +21,7 @@ public class Course {
 
    @OneToOne
     @JsonBackReference
-    private Teacher courseTeacher;
+    private Teacher teacher;
 
    @OneToMany(mappedBy = "newCourse", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonBackReference
@@ -30,7 +30,7 @@ public class Course {
     public Course(Long courseId, String courseName, Teacher courseTeacher, Set<Student> courseStudents) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.courseTeacher = courseTeacher;
+        this.teacher = courseTeacher;
         this.courseStudents = courseStudents;
     }
 
@@ -45,7 +45,7 @@ public class Course {
             this.courseName = courseDto.getCourseName();
         }
         if (courseDto.getCourseTeacher() != null) {
-            this.courseTeacher = courseDto.getCourseTeacher();
+            this.teacher = courseDto.getCourseTeacher();
         }
     }
 
@@ -66,11 +66,11 @@ public class Course {
     }
 
     public Teacher getCourseTeacher() {
-        return courseTeacher;
+        return teacher;
     }
 
     public void setCourseTeacher(Teacher courseTeacher) {
-        this.courseTeacher = courseTeacher;
+        this.teacher = courseTeacher;
     }
 
     public Set<Student> getCourseStudents() {
