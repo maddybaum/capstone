@@ -1,4 +1,4 @@
 package com.HackbrightOptum.capstone.Controllers;
 
-public class ClassController {
+public class CourseController {
 }

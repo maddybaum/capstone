@@ -38,7 +38,7 @@ public class TeacherServiceImpl implements TeacherService {
                 response.add("User login successful");
                 response.add(String.valueOf(teacherOptional.get().getTeacherId()));
             } else {
-                TeacherService.isUsername_or_password_incorrect(response);
+                response.add("Username or password incorrect");
             }
         } else {
             response.add("Username or password incorrect");

@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
             student.setHasFidgetToy(studentDto.getHasFidgetToy());
             student.setHasProximityCheck(studentDto.getHasProximityCheck());
             student.setNumOfAccommodationsProvided(studentDto.getNumOfAccommodationsProvided());
-            studentRepository.saveAndFlush(student)
+            studentRepository.saveAndFlush(student);
         });
     }
     @Override
