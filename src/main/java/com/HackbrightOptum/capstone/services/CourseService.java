@@ -1,6 +1,6 @@
-package com.HackbrightOptum.capstone.Services;
+package com.HackbrightOptum.capstone.services;
 
-import com.HackbrightOptum.capstone.DTOs.CourseDto;
+import com.HackbrightOptum.capstone.dtos.CourseDto;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -19,4 +19,9 @@ public interface CourseService {
     void updateCourseStudents(CourseDto courseDto);
 
     Optional<CourseDto> getCourseById(Long courseId);
+
+//    public void dummy(){
+//        Student student = Student.builder()
+//                .studentName("Frank").build();
+//    }
 }

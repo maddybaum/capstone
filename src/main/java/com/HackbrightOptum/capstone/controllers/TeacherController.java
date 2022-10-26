@@ -23,6 +23,9 @@
 //
 //    @PostMapping("/register")
 //    public List<String> addTeacher(@RequestBody TeacherDto teacherDto){
-//        String passHash = passwordEncoder.encode(teacherDto.getPassword())
+//        String passHash = passwordEncoder.encode(teacherDto.getPassword());
+//        teacherDto.setPassword(passHash);
+//        return teacherService.addTeacher(teacherDto);
 //    }
+//    @PostMapping("/login")
 //}

@@ -1,6 +1,6 @@
-package com.HackbrightOptum.capstone.Repositories;
+package com.HackbrightOptum.capstone.repositories;
 
-import com.HackbrightOptum.capstone.Entities.Student;
+import com.HackbrightOptum.capstone.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

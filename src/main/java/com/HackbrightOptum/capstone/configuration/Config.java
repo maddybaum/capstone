@@ -1,4 +1,4 @@
-package com.HackbrightOptum.capstone.Configuration;
+package com.HackbrightOptum.capstone.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
