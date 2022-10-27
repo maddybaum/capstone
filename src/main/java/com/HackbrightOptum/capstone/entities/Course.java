@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,8 +36,24 @@ public class Course {
 
     //private Set<Student> courseRoster;
 
+    public List<Student> getStudentList() {
+        if(studentList == null){
+            studentList = new ArrayList<>();
+        }
+        return studentList;
+    }
+
     @ManyToMany(mappedBy = "courseList")
     private List<Student> studentList;
+
+    /*
+     *  this is a convenient utility kind of method to add the relationship between
+     *  this course and this input student
+     */
+    public void addStudent(Student student) {
+        this.getStudentList().add(student);
+        student.getCourseList().add(this);
+    }
 
 //    public Course(CourseDto courseDto) {
 //        if (courseDto.getCourseId() != null) {

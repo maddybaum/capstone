@@ -17,7 +17,7 @@ public class StudentDto implements Serializable {
     private Long studentId;
     private String studentName;
 
-    private Set<Course> studentCourses = new HashSet<>();
+    private Set<CourseDto> studentCourses = new HashSet<>();
 
     //Do I need below?
     //private StudentDto studentDto;

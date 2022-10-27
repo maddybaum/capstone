@@ -2,6 +2,7 @@ package com.HackbrightOptum.capstone.dtos;
 
 import com.HackbrightOptum.capstone.entities.Teacher;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ public class TeacherDto implements Serializable {
     private String teacherName;
     private String teacherPassword;
 
+    ModelMapper modelMapper = new ModelMapper();
 
     public TeacherDto(Teacher teacher){
         if(teacher.getTeacherId() != null){

@@ -3,6 +3,7 @@ package com.HackbrightOptum.capstone.services;
 import com.HackbrightOptum.capstone.dtos.CourseDto;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 public interface CourseService {
@@ -13,15 +14,22 @@ public interface CourseService {
     void deleteCourseById(Long courseId);
 
     @Transactional
-    void updateCourseTeacher(CourseDto courseDto);
+    void updateCourseTeacher(CourseDto courseDto, Long teacherId);
 
+    //Increases courses elapsed by 1 for each passing day
     @Transactional
-    void updateCourseStudents(CourseDto courseDto);
+    void increaseCourseElapsed(CourseDto courseDto);
 
+    List<CourseDto> getAllCoursesByTeacherId(Long teacherId);
+
+    //    @Override
+    //    @Transactional
+    //    public void updateCourseStudents(CourseDto courseDto){
+    //        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
+    //        courseOptional.ifPresent(course -> {
+    //            course.setCourseStudents(courseDto.getCourseStudentSet());
+    //            courseRepository.saveAndFlush(course);
+    //        });
+    //    }
     Optional<CourseDto> getCourseById(Long courseId);
-
-//    public void dummy(){
-//        Student student = Student.builder()
-//                .studentName("Frank").build();
-//    }
 }

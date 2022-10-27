@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,9 +28,22 @@ public class Accommodations {
     @Column(name = "Accommodation_Description")
     private String accommodationDescription;
 
-    @ManyToMany(mappedBy = "accommodationsList")
-    private List<Student> studentAccomList;
+    //@ManyToMany(mappedBy = "accommodationsList")
+    //private List<Student> studentAccomList;
 
+    public List<StudentAccommodation> getStudentAccommodationList() {
+        if(getStudentAccommodationList() == null){
+            studentAccommodationList = new ArrayList<>();
+        }
+        return studentAccommodationList;
+    }
+
+    public void addStudentAccommodation(StudentAccommodation studentAccommodation) {
+        studentAccommodation.setAccommodation(this);
+        this.getStudentAccommodationList().add(studentAccommodation);
+    }
     @OneToMany(mappedBy = "accommodation")
     private List<StudentAccommodation> studentAccommodationList;
+
+
 }

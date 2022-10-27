@@ -19,7 +19,7 @@ public class CourseDto implements Serializable {
     private String courseName;
     private String courseTeacher;
     private int numberOfCoursesElapsed;
-    private Set<Student> courseStudentSet = new HashSet<>();
+    private Set<StudentDto> courseStudentSet = new HashSet<>();
     //private CourseDto courseDto;
 
     public CourseDto(Course course){

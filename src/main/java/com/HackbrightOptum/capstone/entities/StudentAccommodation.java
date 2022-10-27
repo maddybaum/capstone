@@ -28,5 +28,19 @@ public class StudentAccommodation {
     @JoinColumn(name = "Accommodation_ID")
     private Accommodations accommodation;
 
+    @Column(name = "Accommodation_Frequency")
+    private int accommodationFrequency;
 
+    @Column(name = "Accommodation_Received")
+    private int accommodationReceived;
+
+    public void addStudent(Student student){
+        this.setStudent(student);
+        student.getStudentAccommodationList().add(this);
+    }
+
+    public void addAccommodation(Accommodations accommodations){
+        this.setAccommodation(accommodations);
+        accommodations.getStudentAccommodationList().add(this);
+    }
 }

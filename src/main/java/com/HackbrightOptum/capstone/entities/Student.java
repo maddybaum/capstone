@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,13 @@ public class Student {
     private String studentName;
 
 
+    public List<Course> getCourseList() {
+        if(courseList == null){
+            courseList = new ArrayList<>();
+        }
+        return courseList;
+    }
+
     @ManyToMany
     @JoinTable(name = "Student_Course",
             joinColumns = { @JoinColumn(name = "Student_ID") },
@@ -34,12 +42,27 @@ public class Student {
     private List<Course> courseList;
 
 
-    @ManyToMany
-    @JoinTable(name = "Student_Accommodations",
-            joinColumns = { @JoinColumn(name = "Student_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "Accommodation_ID") }
-    )
-    private List<Accommodations> accommodationsList;
+//    @ManyToMany
+//    @JoinTable(name = "Student_Accommodations",
+//            joinColumns = { @JoinColumn(name = "Student_ID") },
+//            inverseJoinColumns = { @JoinColumn(name = "Accommodation_ID") }
+//    )
+//    private List<Accommodations> accommodationsList;
+
+    public List<StudentAccommodation> getStudentAccommodationList() {
+        if(studentAccommodationList == null){
+            studentAccommodationList = new ArrayList<>();
+        }
+        return studentAccommodationList;
+    }
+    /*
+     *  this is a convenient utility kind of method to add the relationship between
+     *  this accommmodation and this input student
+     */
+    public void addStudentAccommodation(StudentAccommodation studentAccommodation) {
+        studentAccommodation.setStudent(this);
+        this.getStudentAccommodationList().add(studentAccommodation);
+    }
 
     @OneToMany(mappedBy = "student")
     private List<StudentAccommodation> studentAccommodationList;
