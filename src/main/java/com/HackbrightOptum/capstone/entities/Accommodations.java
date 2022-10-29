@@ -43,7 +43,7 @@ public class Accommodations {
         studentAccommodation.setAccommodation(this);
         this.getStudentAccommodationList().add(studentAccommodation);
     }
-    @OneToMany(mappedBy = "accommodation")
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<StudentAccommodation> studentAccommodationList;
 
 

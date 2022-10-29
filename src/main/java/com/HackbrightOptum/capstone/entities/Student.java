@@ -39,7 +39,7 @@ public class Student {
         return courseList;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Student_Course",
             joinColumns = { @JoinColumn(name = "Student_ID") },
             inverseJoinColumns = { @JoinColumn(name = "Course_ID") }
@@ -73,7 +73,7 @@ public class Student {
         this.getStudentAccommodationList().add(studentAccommodation);
     }
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<StudentAccommodation> studentAccommodationList;
 
     //What do I need here?

@@ -22,10 +22,10 @@ public class StudentAccommodation {
     @Column(name = "Student_Accommodation_ID")
     private Long studentAccommodationId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Student_ID")
     private Student student;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Accommodation_ID")
     private Accommodations accommodation;
 

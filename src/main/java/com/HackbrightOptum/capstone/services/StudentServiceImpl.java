@@ -117,14 +117,26 @@ public class StudentServiceImpl implements StudentService {
         Student student = new Student(studentDto);
             student.setStudentName(studentDto.getStudentName());
 
-        StudentAccommodation studentAccommodation = new StudentAccommodation();
-        studentAccommodation.setAccommodation(studentDto.getStudentAccommodation());
-        studentAccommodation.setAccommodationFrequency(studentDto.getAccommodationFrequency());
-        studentAccommodation.setAccommodationReceived(studentDto.getAccommodationReceived());
+//        StudentAccommodation studentAccommodation = new StudentAccommodation();
+//        studentAccommodation.setAccommodation(studentDto.getStudentAccommodation());
+//        studentAccommodation.setAccommodationFrequency(studentDto.getAccommodationFrequency());
+//        studentAccommodation.setAccommodationReceived(studentDto.getAccommodationReceived());
+        student.getCourseList().add(studentDto.getStudentCourse());
+//        student.setCourseList((List<Course>) studentDto.getStudentCourse());
+//        student.getStudentAccommodationList().add(studentAccommodation);
+        //I need to be able to access the student ID of the studentDto, and then
+        //add the values from the studentDto to the corresponding student in the studentAccommodations table
+       //Getting ID
+        Long studentId = student.getStudentId();
+        //Creating new studentAccommodation
+       StudentAccommodation studentAccommodation = new StudentAccommodation();
+       //set the student to the already created student
+       studentAccommodation.setStudent(student);
+       //get the accommodation frequency from the dto and set it to the studentAccommodation, do same for accom received
+       studentAccommodation.setAccommodationFrequency(studentDto.getAccommodationFrequency());
+       studentAccommodation.setAccommodationReceived(studentAccommodation.getAccommodationReceived());
+       student.getStudentAccommodationList().add(studentAccommodation);
 
-//        Course course = new Course(studentDto.getStudentCourse());
-//            course.setCourseName(studentDto.getStudentCourse());
-        student.getStudentAccommodationList().add(studentAccommodation);
         studentRepository.save(student);
     }
 
