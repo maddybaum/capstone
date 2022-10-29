@@ -23,12 +23,15 @@ public class TeacherController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //End point tested and works
     @PostMapping("/register")
     public List<String> addTeacher(@RequestBody TeacherDto teacherDto){
         String passHash = passwordEncoder.encode(teacherDto.getTeacherPassword());
         teacherDto.setTeacherPassword(passHash);
         return teacherService.addTeacher(teacherDto);
     }
+
+    //End point tested and works
     @PostMapping("/login")
     public List<String> teacherLogin(@RequestBody TeacherDto teacherDto){
         return teacherService.teacherLogin(teacherDto);

@@ -15,27 +15,34 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+
+    //This end point semi works, however it does not show the teacher. Shows the value as null
     @GetMapping("/teacher/{teacherId}")
     public List<CourseDto> getCoursesByTeacher(@PathVariable Long teacherId){
         return courseService.getAllCoursesByTeacherId(teacherId);
     }
-    @PostMapping("/course/{teacherId}")
+
+    //This end point works
+    @PostMapping("/{teacherId}")
     public void addCourse(@RequestBody CourseDto courseDto, @PathVariable Long teacherId){
         courseService.addCourse(courseDto, teacherId);
     }
-
-    @PutMapping
+    //This does not work, which I believe has something to do with the fact that there is no ID given that you should edit
+    @PutMapping("/{courseId}")
     public void updateCourse(@RequestBody CourseDto courseDto, @PathVariable Long teacherId){
         courseService.updateCourseTeacher(courseDto, teacherId);
     }
-
+    //works
     @DeleteMapping("/{courseId}")
     public void deleteCourseById(@PathVariable Long courseId){
         courseService.deleteCourseById(courseId);
     }
 
+    //works but teacher is left null
     @GetMapping("/{courseId}")
     public Optional<CourseDto> getCoursesById(@PathVariable Long courseId){
         return courseService.getCourseById(courseId);
     }
+
+
 }

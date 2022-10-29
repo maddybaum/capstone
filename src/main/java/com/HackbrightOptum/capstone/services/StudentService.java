@@ -3,8 +3,10 @@ package com.HackbrightOptum.capstone.services;
 import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
@@ -22,8 +24,38 @@ public interface StudentService {
 
     Optional<StudentDto> getStudentById(Long studentId);
 
-    void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto);
+//    void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto);
+
+    //    public void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto){
+//        Student student = Student.builder().studentName(studentDto.getStudentName()).build();
+////        Accommodations accommodations = Accommodations.builder()
+////                .accommodationDescription(accommodationsDto.getAccommodationDescription())
+////                .accommodationName(accommodationsDto.getAccommodationName())
+////                .build();
+//        StudentAccommodation studentAccommodation = StudentAccommodation.builder()
+//                .accommodationFrequency(studentAccommodationDto.getAccommodationFrequency())
+//                .accommodationReceived(studentAccommodationDto.getAccommodationReceived())
+//                .build();
+//
+//        student.addStudentAccommodation(studentAccommodation);
+//        studentAccommodation.addAccommodation(accommodations);
+//        studentRepository.save(student);
+//    }
+
+//    public void createStudent(StudentDto studentDto){
+//        Student student = Student.builder()
+//                .studentName(studentDto.getStudentName())
+////                .courseList(studentDto.getStudentCourses())
+////                .studentAccommodations(studentDto.getStudentAccommodations())
+//                .build();
+//
+//        studentRepository.save(student);
+//    }
+void createStudent(StudentDto studentDto);
 
     @Transactional
     void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto);
+
+//    @Transactional
+//    void createStudent(StudentDto studentDto);
 }

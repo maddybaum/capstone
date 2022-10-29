@@ -1,9 +1,7 @@
 package com.HackbrightOptum.capstone.services;
 
-import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
-import com.HackbrightOptum.capstone.entities.Accommodations;
 import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
@@ -15,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -65,6 +65,7 @@ public class StudentServiceImpl implements StudentService {
         });
     }
 
+
     //How do I match up the student ID and the StudentAccommodation studentID field
 //    @Override
 //    @Transactional
@@ -83,22 +84,57 @@ public class StudentServiceImpl implements StudentService {
         return null;
     }
 
-    @Override
-    public void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto){
-        Student student = Student.builder().studentName(studentDto.getStudentName()).build();
-        Accommodations accommodations = Accommodations.builder()
-                .accommodationDescription(accommodationsDto.getAccommodationDescription())
-                .accommodationName(accommodationsDto.getAccommodationName())
-                .build();
-        StudentAccommodation studentAccommodation = StudentAccommodation.builder()
-                .accommodationFrequency(studentAccommodationDto.getAccommodationFrequency())
-                .accommodationReceived(studentAccommodationDto.getAccommodationReceived())
-                .build();
 
-        student.addStudentAccommodation(studentAccommodation);
-        studentAccommodation.addAccommodation(accommodations);
+    @Override
+//    public void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto){
+//        Student student = Student.builder().studentName(studentDto.getStudentName()).build();
+////        Accommodations accommodations = Accommodations.builder()
+////                .accommodationDescription(accommodationsDto.getAccommodationDescription())
+////                .accommodationName(accommodationsDto.getAccommodationName())
+////                .build();
+//        StudentAccommodation studentAccommodation = StudentAccommodation.builder()
+//                .accommodationFrequency(studentAccommodationDto.getAccommodationFrequency())
+//                .accommodationReceived(studentAccommodationDto.getAccommodationReceived())
+//                .build();
+//
+//        student.addStudentAccommodation(studentAccommodation);
+//        studentAccommodation.addAccommodation(accommodations);
+//        studentRepository.save(student);
+//    }
+
+    //You should include cascade="all" (if using xml) or cascade=CascadeType.ALL (if using annotations) on your collection mapping.
+//    public void createStudent(StudentDto studentDto){
+//        Student student = Student.builder()
+//                .studentName(studentDto.getStudentName())
+//                .courseList(studentDto.getStudentCourses())
+////                .studentAccommodations(studentDto.getStudentAccommodations())
+//                .build();
+//
+//        studentRepository.save(student);
+//    }
+
+    public void createStudent(StudentDto studentDto){
+        Student student = new Student(studentDto);
+            student.setStudentName(studentDto.getStudentName());
+
+        StudentAccommodation studentAccommodation = new StudentAccommodation();
+        studentAccommodation.setAccommodation(studentDto.getStudentAccommodation());
+        studentAccommodation.setAccommodationFrequency(studentDto.getAccommodationFrequency());
+        studentAccommodation.setAccommodationReceived(studentDto.getAccommodationReceived());
+
+//        Course course = new Course(studentDto.getStudentCourse());
+//            course.setCourseName(studentDto.getStudentCourse());
+        student.getStudentAccommodationList().add(studentAccommodation);
         studentRepository.save(student);
     }
+
+//    public List<String> createStudent(StudentDto studentDto){
+//        List<String> response = new ArrayList<>();
+//        Student student = new Student(studentDto);
+//        studentRepository.saveAndFlush(student);
+//        response.add("New student successfully added");
+//        return response;
+//    }
 
     @Override
     @Transactional

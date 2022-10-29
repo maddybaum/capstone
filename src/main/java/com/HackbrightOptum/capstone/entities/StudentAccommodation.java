@@ -1,5 +1,7 @@
 package com.HackbrightOptum.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +25,6 @@ public class StudentAccommodation {
     @ManyToOne
     @JoinColumn(name = "Student_ID")
     private Student student;
-
     @ManyToOne
     @JoinColumn(name = "Accommodation_ID")
     private Accommodations accommodation;

@@ -21,21 +21,21 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/student/{studentId}")
-    public Optional<StudentDto> getStudentById(@PathVariable Long studentId) {
+    @GetMapping("/{studentId}")
+    public Optional<StudentDto> getStudentById(@RequestBody StudentDto studentDto, @PathVariable Long studentId) {
         return studentService.getStudentById(studentId);
     }
 
-    //What would be the end point for adding a student?
+    //This works but it needs a way to add student accomms
     @PostMapping("/newStudent")
-    public void createStudentAndAccommodation(@RequestBody StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto) {
-        studentService.createStudentAndAccommodation(studentDto, accommodationsDto, studentAccommodationDto);
+    public void createStudent(@RequestBody StudentDto studentDto) {
+        studentService.createStudent(studentDto);
     }
 
-    @PutMapping
-    public void updateStudentById(@RequestBody StudentDto studentDto) {
-        studentService.updateStudentById(studentDto);
-    }
+//    @PutMapping
+//    public void updateStudentById(@RequestBody StudentDto studentDto) {
+//        studentService.updateStudentById(studentDto);
+//    }
 
     //Not sure if I wrote endpoint correctly
     @DeleteMapping("course/{courseId}")
@@ -48,8 +48,8 @@ public class StudentController {
         studentService.deleteStudentById(studentId);
     }
 
-
-    @PutMapping
+    //This needs to be fixed
+    @PutMapping("accomsReceived/{studentId}")
     public void increaseStudentAccommodationReceived(@RequestBody StudentAccommodationDto studentAccommodationDto) {
         studentService.increaseStudentAccommodationReceived(studentAccommodationDto);
     }

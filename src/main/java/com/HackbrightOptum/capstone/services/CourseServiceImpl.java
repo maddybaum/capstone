@@ -1,4 +1,4 @@
-package com.HackbrightOptum.capstone.Services;
+package com.HackbrightOptum.capstone.services;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
 import com.HackbrightOptum.capstone.entities.Course;

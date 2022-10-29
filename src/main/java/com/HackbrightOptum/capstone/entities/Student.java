@@ -1,6 +1,8 @@
 package com.HackbrightOptum.capstone.entities;
 
 //import com.HackbrightOptum.capstone.DTOs.StudentDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +28,9 @@ public class Student {
     @Column(name = "Student_Name")
     private String studentName;
 
+    public Student(StudentDto studentDto) {
+    }
+
 
     public List<Course> getCourseList() {
         if(courseList == null){
@@ -41,6 +46,10 @@ public class Student {
     )
     private List<Course> courseList;
 
+    public void addCourse(Course course){
+        courseList.add(course);
+        course.getStudentList().add(this);
+    }
 
 //    @ManyToMany
 //    @JoinTable(name = "Student_Accommodations",

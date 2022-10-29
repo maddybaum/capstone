@@ -3,6 +3,7 @@ package com.HackbrightOptum.capstone.entities;
 
 //import com.HackbrightOptum.capstone.DTOs.CourseDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,8 +31,8 @@ public class Course {
     @Column(name = "Number_Of_Courses_Elapsed")
     private int numberOfCoursesElapsed;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonBackReference
+    //Changed CascadeType.Merge to CascadeType.All
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.PERSIST})
     private Teacher teacher;
 
     //private Set<Student> courseRoster;
@@ -43,7 +44,7 @@ public class Course {
         return studentList;
     }
 
-    @ManyToMany(mappedBy = "courseList")
+    @ManyToMany(mappedBy = "courseList", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Student> studentList;
 
     /*
