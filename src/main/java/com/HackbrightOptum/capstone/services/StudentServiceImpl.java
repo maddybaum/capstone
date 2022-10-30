@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -140,6 +138,11 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(student);
     }
 
+//    @Override
+//    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto) {
+//
+//    }
+
 //    public List<String> createStudent(StudentDto studentDto){
 //        List<String> response = new ArrayList<>();
 //        Student student = new Student(studentDto);
@@ -150,10 +153,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto){
-        Optional<Student> studentOptional = studentRepository.findById(studentAccommodationDto.getStudentId());
-        if(studentOptional.isPresent()){
-            studentAccommodationDto.setAccommodationReceived(studentAccommodationDto.getAccommodationReceived()+1);
-        }
+    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId){
+        Optional<StudentAccommodation> studentAccommodationOptional = studentAccommodationRepository.findById(studentAccommodationDto.getStudentId());
+
+        studentAccommodationOptional.ifPresent(studentAccommodation -> {
+            studentAccommodation.setAccommodationReceived(studentAccommodationDto.getAccommodationReceived()+1);
+            studentAccommodationRepository.saveAndFlush(studentAccommodation);
+        });
     }
 }

@@ -34,4 +34,6 @@ public interface CourseService {
     //        });
     //    }
     Optional<CourseDto> getCourseById(Long courseId);
+
+    void increaseDaysElapsed(CourseDto courseDto);
 }

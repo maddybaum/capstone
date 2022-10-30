@@ -53,8 +53,11 @@ public interface StudentService {
 //    }
 void createStudent(StudentDto studentDto);
 
+//    @Transactional
+//    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId);
+
     @Transactional
-    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto);
+    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId);
 
 //    @Transactional
 //    void createStudent(StudentDto studentDto);

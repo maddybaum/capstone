@@ -63,6 +63,7 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
             courseOptional.ifPresent(course -> {
                 course.setTeacher(teacherOptional.get());
                 courseRepository.saveAndFlush(course);
+
             });
         }
     }
@@ -106,4 +107,14 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
         return Optional.empty();
     }
 
-}
+    @Override
+    public void increaseDaysElapsed(CourseDto courseDto) {
+        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
+        courseOptional.ifPresent(course -> {
+            ;
+            courseDto.setNumberOfCoursesElapsed(courseDto.getNumberOfCoursesElapsed() + 1);
+            courseRepository.saveAndFlush(course);
+        });
+    }
+    }
+

@@ -17,7 +17,7 @@ public class CourseController {
 
 
     //This end point semi works, however it does not show the teacher. Shows the value as null
-    @GetMapping("/teacher/{teacherId}")
+    @GetMapping("teacher/{teacherId}")
     public List<CourseDto> getCoursesByTeacher(@PathVariable Long teacherId){
         return courseService.getAllCoursesByTeacherId(teacherId);
     }
@@ -42,6 +42,10 @@ public class CourseController {
     @GetMapping("/{courseId}")
     public Optional<CourseDto> getCoursesById(@PathVariable Long courseId){
         return courseService.getCourseById(courseId);
+    }
+    @PutMapping
+    public void increaseDaysElapsed(@RequestBody CourseDto courseDto){
+        courseService.increaseDaysElapsed(courseDto);
     }
 
 
