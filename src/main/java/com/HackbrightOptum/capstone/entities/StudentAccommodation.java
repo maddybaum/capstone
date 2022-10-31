@@ -53,18 +53,16 @@ public class StudentAccommodation {
         return accommodation;
     }
 
-    public StudentAccommodation(StudentDto studentDto) {
+    public StudentAccommodation(Student student, StudentAccommodationDto studentAccommodationDto) {
         if (student.getStudentId() != null) {
-//            this.student = (Student)studentAccommodationDto.getStudentId();
+           this.student = student;
         }
-        if(studentDto.getStudentAccommodationList() != null){
-            for(StudentAccommodationDto studentAccommodationDto : studentDto.getStudentAccommodationList()){
+        if(studentAccommodationDto != null){
                 this.studentAccommodationId = studentAccommodationDto.getAccommodationId();
-                this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
                 this.accommodationReceived = studentAccommodationDto.getAccommodationReceived();
+                this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
             }
         }
 
 
-    }
     }

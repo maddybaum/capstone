@@ -86,12 +86,14 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
+    @Transactional
     public void createStudent(StudentDto studentDto){
         Student student = new Student(studentDto);
 //        StudentAccommodation studentAccommodation= new StudentAccommodation(studentDto);
 //        studentAccommodation.setStudent(studentDto.getStudentId());
         for(StudentAccommodationDto studentAccommodationDto : studentDto.getStudentAccommodationList()){
-            StudentAccommodation studentAccommodation= new StudentAccommodation(studentDto);
+            StudentAccommodation studentAccommodation= new StudentAccommodation(student, studentAccommodationDto);
+
             studentAccommodationRepository.saveAndFlush(studentAccommodation);
             //create entity for the dto
             //save to database
