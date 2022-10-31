@@ -2,7 +2,6 @@ package com.HackbrightOptum.capstone.entities;
 
 //import com.HackbrightOptum.capstone.DTOs.StudentDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +27,7 @@ public class Student {
     @Column(name = "Student_Name")
     private String studentName;
 
-    public Student(StudentDto studentDto) {
-    }
+
 
 
     public List<Course> getCourseList() {
@@ -51,23 +49,13 @@ public class Student {
         course.getStudentList().add(this);
     }
 
-//    @ManyToMany
-//    @JoinTable(name = "Student_Accommodations",
-//            joinColumns = { @JoinColumn(name = "Student_ID") },
-//            inverseJoinColumns = { @JoinColumn(name = "Accommodation_ID") }
-//    )
-//    private List<Accommodations> accommodationsList;
-
     public List<StudentAccommodation> getStudentAccommodationList() {
         if(studentAccommodationList == null){
-            studentAccommodationList = new ArrayList<>();
+            this.studentAccommodationList = new ArrayList<>();
         }
         return studentAccommodationList;
     }
-    /*
-     *  this is a convenient utility kind of method to add the relationship between
-     *  this accommmodation and this input student
-     */
+
     public void addStudentAccommodation(StudentAccommodation studentAccommodation) {
         studentAccommodation.setStudent(this);
         this.getStudentAccommodationList().add(studentAccommodation);
@@ -77,9 +65,16 @@ public class Student {
     private List<StudentAccommodation> studentAccommodationList;
 
     //What do I need here?
-//    public student(StudentDto studentDto) {
-//        if (studentDto.getStudentName() != null) {
-//            this.studentName = studentDto.getStudentName();
-//        }
-//    }
+    public Student(StudentDto studentDto) {
+        if(studentDto.getStudentId() != null){
+            this.studentId = studentDto.getStudentId();
+        }
+        if (studentDto.getStudentName() != null) {
+            this.studentName = studentDto.getStudentName();
+        }
+//        if(studentDto.getStudentAccommodationList() != null){
+//            this.studentAccommodationList = studentDto.getStudentAccommodationList();
+////        }
+    }
+
 }

@@ -17,7 +17,6 @@ public class TeacherDto implements Serializable {
     private String teacherName;
     private String teacherPassword;
 
-    ModelMapper modelMapper = new ModelMapper();
 
     public TeacherDto(Teacher teacher){
         if(teacher.getTeacherId() != null){

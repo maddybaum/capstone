@@ -3,6 +3,7 @@ package com.HackbrightOptum.capstone.services;
 import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
+import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -42,7 +43,14 @@ public interface StudentService {
 //        studentRepository.save(student);
 //    }
 
-//    public void createStudent(StudentDto studentDto){
+    //Need help with this
+
+    //Need help with this
+
+    //Need help with this
+    List<StudentAccommodation> getStudentAccomsById(Long studentId);
+
+    //    public void createStudent(StudentDto studentDto){
 //        Student student = Student.builder()
 //                .studentName(studentDto.getStudentName())
 ////                .courseList(studentDto.getStudentCourses())

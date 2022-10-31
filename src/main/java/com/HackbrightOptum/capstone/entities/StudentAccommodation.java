@@ -1,5 +1,8 @@
 package com.HackbrightOptum.capstone.entities;
 
+import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
+import com.HackbrightOptum.capstone.dtos.TeacherDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -25,6 +28,7 @@ public class StudentAccommodation {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Student_ID")
     private Student student;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Accommodation_ID")
     private Accommodations accommodation;
@@ -44,4 +48,23 @@ public class StudentAccommodation {
         this.setAccommodation(accommodations);
         accommodations.getStudentAccommodationList().add(this);
     }
-}
+
+    public Accommodations getAccommodation() {
+        return accommodation;
+    }
+
+    public StudentAccommodation(StudentDto studentDto) {
+        if (student.getStudentId() != null) {
+//            this.student = (Student)studentAccommodationDto.getStudentId();
+        }
+        if(studentDto.getStudentAccommodationList() != null){
+            for(StudentAccommodationDto studentAccommodationDto : studentDto.getStudentAccommodationList()){
+                this.studentAccommodationId = studentAccommodationDto.getAccommodationId();
+                this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
+                this.accommodationReceived = studentAccommodationDto.getAccommodationReceived();
+            }
+        }
+
+
+    }
+    }

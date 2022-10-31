@@ -18,8 +18,8 @@ public class AccommodationsDto implements Serializable {
     private Long accommodationId;
     private String accommodationName;
     private String accommodationDescription;
-    private List<StudentDto> studentAccomList;
-    private List<StudentAccommodationDto> studentAccommodationList;
+    private List<StudentAccommodation> studentAccomList;
+    private List<StudentAccommodation> studentAccommodationList;
 
     //private AccommodationsDto accommodationsDto;
 
@@ -29,6 +29,15 @@ public class AccommodationsDto implements Serializable {
         }
         if(accommodations.getAccommodationName() != null){
             this.accommodationName = accommodations.getAccommodationName();
+        }
+        if(accommodations.getAccommodationDescription() != null){
+            this.accommodationDescription = accommodations.getAccommodationDescription();
+        }
+        if(accommodations.getStudentAccommodationList() != null){
+            this.studentAccomList = accommodations.getStudentAccommodationList();
+        }
+        if(studentAccommodationList != null){
+            this.studentAccommodationList = accommodations.getStudentAccommodationList();
         }
     }
 }

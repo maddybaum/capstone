@@ -1,5 +1,6 @@
 package com.HackbrightOptum.capstone.entities;
 
+import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,5 +47,18 @@ public class Accommodations {
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<StudentAccommodation> studentAccommodationList;
 
-
+    public Accommodations(AccommodationsDto accommodationsDto){
+        if(accommodationsDto.getAccommodationId() != null){
+            this.accommodationId = accommodationsDto.getAccommodationId();
+        }
+        if(accommodationsDto.getAccommodationName() != null){
+            this.accommodationName = accommodationsDto.getAccommodationName();
+        }
+        if(accommodationsDto.getAccommodationDescription() != null){
+            this.accommodationDescription = accommodationsDto.getAccommodationDescription();
+        }
+        if(accommodationsDto.getStudentAccommodationList() != null){
+            this.studentAccommodationList = accommodationsDto.getStudentAccommodationList();
+        }
+    }
 }

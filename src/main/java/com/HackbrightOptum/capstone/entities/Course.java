@@ -2,6 +2,8 @@ package com.HackbrightOptum.capstone.entities;
 
 
 //import com.HackbrightOptum.capstone.DTOs.CourseDto;
+import com.HackbrightOptum.capstone.dtos.CourseDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ public class Course {
     private int numberOfCoursesElapsed;
 
     //Changed CascadeType.Merge to CascadeType.All
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Teacher teacher;
 
     //private Set<Student> courseRoster;
@@ -56,13 +58,22 @@ public class Course {
         student.getCourseList().add(this);
     }
 
-//    public Course(CourseDto courseDto) {
-//        if (courseDto.getCourseId() != null) {
-//            this.courseId = courseDto.getCourseId();
+    public Course(CourseDto courseDto) {
+        if (courseDto.getCourseId() != null) {
+            this.courseId = courseDto.getCourseId();
+        }
+        if (courseDto.getCourseName() != null) {
+            this.courseName = courseDto.getCourseName();
+        }
+        if(courseDto.getNumberOfCoursesElapsed() != 0){
+            this.numberOfCoursesElapsed = courseDto.getNumberOfCoursesElapsed();
+        }
+        if(courseDto.getTeacher() != null){
+            this.teacher = courseDto.getTeacher();
+        }
+//        if(courseDto.getCourseStudentList() != null){
+//            this.studentList = courseDto.getCourseStudentList();
 //        }
-//        if (courseDto.getCourseName() != null) {
-//            this.courseName = courseDto.getCourseName();
-//        }
-//    }
+    }
 }
 

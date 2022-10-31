@@ -2,10 +2,13 @@ package com.HackbrightOptum.capstone.dtos;
 
 import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
+import com.HackbrightOptum.capstone.entities.Teacher;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,9 +20,9 @@ import java.util.Set;
 public class CourseDto implements Serializable {
     private Long courseId;
     private String courseName;
-    private String courseTeacher;
+    private Teacher teacher;
     private int numberOfCoursesElapsed;
-    private Set<StudentDto> courseStudentSet = new HashSet<>();
+    private List<StudentDto> courseStudentList = new ArrayList<>();
     //private CourseDto courseDto;
 
     public CourseDto(Course course){
@@ -29,5 +32,12 @@ public class CourseDto implements Serializable {
         if(course.getCourseName() != null){
             this.courseName = course.getCourseName();
         }
+        if(course.getNumberOfCoursesElapsed() != 0){
+            this.numberOfCoursesElapsed = course.getNumberOfCoursesElapsed();
+        }
+//        if(course.getStudentList() != null){
+//            this.courseStudentList = course.getStudentList();
+        }
+
     }
-}
+

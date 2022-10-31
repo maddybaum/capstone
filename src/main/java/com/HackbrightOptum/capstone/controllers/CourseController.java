@@ -16,7 +16,8 @@ public class CourseController {
     private CourseService courseService;
 
 
-    //This end point semi works, however it does not show the teacher. Shows the value as null
+    //This is leading to an infinite loop
+
     @GetMapping("teacher/{teacherId}")
     public List<CourseDto> getCoursesByTeacher(@PathVariable Long teacherId){
         return courseService.getAllCoursesByTeacherId(teacherId);
