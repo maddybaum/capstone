@@ -72,12 +72,12 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     @Override
     @Transactional
     public void increaseCourseElapsed(CourseDto courseDto){
-        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
-        if(courseOptional.isPresent()){
-            courseDto.setNumberOfCoursesElapsed(courseDto.getNumberOfCoursesElapsed() + 1);
+        Course course = courseRepository.findCourseByCourseId(courseDto.getCourseId());
+            course.setNumberOfCoursesElapsed(course.getNumberOfCoursesElapsed() + 1);
+            courseRepository.save(course);
         }
 
-    }
+
 
     @Override
     public List<CourseDto> getAllCoursesByTeacherId(Long teacherId){
@@ -110,12 +110,9 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 
     @Override
     public void increaseDaysElapsed(CourseDto courseDto) {
-        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
-        courseOptional.ifPresent(course -> {
 
-            courseDto.setNumberOfCoursesElapsed(courseDto.getNumberOfCoursesElapsed() + 1);
-            //courseRepository.saveAndFlush(course);
-        });
     }
-    }
+
+
+}
 

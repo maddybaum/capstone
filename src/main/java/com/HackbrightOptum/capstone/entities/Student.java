@@ -2,10 +2,7 @@ package com.HackbrightOptum.capstone.entities;
 
 //import com.HackbrightOptum.capstone.DTOs.StudentDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,9 +10,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "Students")
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 
 public class Student {

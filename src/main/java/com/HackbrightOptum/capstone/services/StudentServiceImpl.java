@@ -8,6 +8,7 @@ import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import com.HackbrightOptum.capstone.repositories.*;
+import net.minidev.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -116,11 +116,14 @@ public class StudentServiceImpl implements StudentService {
             studentAccommodation.setAccommodationReceived(studentAccommodationDto1.getAccommodationReceived());
             studentAccommodation.setStudent(student);
             studentAccommodationRepository.save(studentAccommodation);
-        for(CourseDto courseDto : studentDto.getStudentCourse()){
-            Course course = courseRepository.findCourseByCourseId(courseDto.getCourseId());
-            courseDto.setTeacher(course.getTeacher());
-            courseDto.setCourseId(course.getCourseId());
+        for(CourseDto course1 : studentDto.getStudentCourse()){
+            Course course = courseRepository.findCourseByCourseId(course1.getCourseId());
+            course.addStudent(student);
 
+//            course1.setTeacher(course.getTeacher());
+//            course1.setCourseId(course.getCourseId());
+
+            courseRepository.saveAndFlush(course);
         }
         }
 ////            StudentAccommodation studentAccommodation = new StudentAccommodation(student, studentDto.getStudentAccommodationList().get;
@@ -152,6 +155,7 @@ public class StudentServiceImpl implements StudentService {
 //        studentAccommodationRepository.saveAll(student);
     }
 
+
 //    public void addStudentToCourse()
 //    @Override
 //    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto) {
@@ -161,13 +165,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId) {
-        Optional<StudentAccommodation> studentAccommodationOptional = studentAccommodationRepository.findById(studentAccommodationDto.getStudentId());
+    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto) {
+        Optional<StudentAccommodation> studentAccommodationOptional = studentAccommodationRepository.findStudentAccommodationByStudentStudentIdAndAccommodationAccommodationId(studentAccommodationDto.getStudentId(), studentAccommodationDto.getAccommodationId());
+        if(studentAccommodationOptional.isPresent()){
+            StudentAccommodation studentAccommodation = studentAccommodationOptional.get();
+            studentAccommodation.setAccommodationReceived(studentAccommodation.getAccommodationReceived() + 1);
+            studentAccommodationRepository.save(studentAccommodation);
+            System.out.println("We found it");
+        } else {
+            System.out.println("The studentAccommodationOptional is failed");
+        }
 
-        studentAccommodationOptional.ifPresent(studentAccommodation -> {
-            studentAccommodation.setAccommodationReceived(studentAccommodationDto.getAccommodationReceived() + 1);
-            studentAccommodationRepository.saveAndFlush(studentAccommodation);
-        });
     }}
 
 //    @Override

@@ -61,7 +61,9 @@ public class StudentController {
     //This needs to be fixed
     @PutMapping("accomsReceived/{studentId}")
     public void increaseStudentAccommodationReceived(@PathVariable Long studentId, @RequestBody StudentAccommodationDto studentAccommodationDto) {
-        studentService.increaseStudentAccommodationReceived(studentAccommodationDto, studentId);
+        System.out.println("AAAAAAAAAAAAAAAAAA" + studentAccommodationDto);
+        studentService.increaseStudentAccommodationReceived(studentAccommodationDto);
+        //
     }
 
 }

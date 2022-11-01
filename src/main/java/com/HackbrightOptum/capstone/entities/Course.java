@@ -6,10 +6,7 @@ import com.HackbrightOptum.capstone.dtos.CourseDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,10 +14,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "Course")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class Course {
     @Id
     @GeneratedValue

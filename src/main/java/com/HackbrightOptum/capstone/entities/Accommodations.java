@@ -2,10 +2,7 @@ package com.HackbrightOptum.capstone.entities;
 
 import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "Accommodations")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

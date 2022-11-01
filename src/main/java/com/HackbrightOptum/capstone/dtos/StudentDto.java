@@ -17,7 +17,7 @@ public class StudentDto implements Serializable {
     private Long studentId;
     private String studentName;
 
-    public List<Course> getStudentCourse() {
+    public List<CourseDto> getStudentCourse() {
         return studentCourse;
     }
 
@@ -36,7 +36,7 @@ public class StudentDto implements Serializable {
         studentAccommodationList.add(studentAccommodationDto);
     }
 
-    public StudentDto(Student student) {
+    public StudentDto(Student student, StudentDto studentDto) {
         if (student.getStudentId() != null) {
             this.studentId = student.getStudentId();
         }
@@ -48,7 +48,7 @@ public class StudentDto implements Serializable {
 //                this.studentAccommodationList.add(studentAccommodation.);
 //            }
         if(student.getCourseList() != null){
-            this.studentCourse = student.getClass();
+            this.studentCourse = studentDto.getStudentCourse();
         }
 //
     }}

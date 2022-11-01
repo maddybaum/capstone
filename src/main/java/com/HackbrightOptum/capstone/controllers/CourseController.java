@@ -28,11 +28,6 @@ public class CourseController {
     public void addCourse(@RequestBody CourseDto courseDto, @PathVariable Long teacherId){
         courseService.addCourse(courseDto, teacherId);
     }
-    //This does not work, which I believe has something to do with the fact that there is no ID given that you should edit
-    @PutMapping("/{courseId}")
-    public void updateCourse(@RequestBody CourseDto courseDto, @PathVariable Long teacherId){
-        courseService.updateCourseTeacher(courseDto, teacherId);
-    }
     //works
     @DeleteMapping("/{courseId}")
     public void deleteCourseById(@PathVariable Long courseId){
@@ -44,9 +39,10 @@ public class CourseController {
     public Optional<CourseDto> getCoursesById(@PathVariable Long courseId){
         return courseService.getCourseById(courseId);
     }
+    //Works
     @PutMapping
-    public void increaseDaysElapsed(@RequestBody CourseDto courseDto){
-        courseService.increaseDaysElapsed(courseDto);
+    public void increaseCourseElapsed(@RequestBody CourseDto courseDto){
+        courseService.increaseCourseElapsed(courseDto);
     }
 
 

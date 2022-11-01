@@ -58,7 +58,9 @@ void createStudent(StudentDto studentDto);
 //    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId);
 
     @Transactional
-    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto, Long studentId);
+    void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto);
+
+
 
 //    @Transactional
 //    void createStudent(StudentDto studentDto);

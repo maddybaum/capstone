@@ -40,7 +40,7 @@ public class TeacherServiceImpl implements TeacherService {
         List<String> response = new ArrayList<>();
         Teacher teacher = new Teacher(teacherDto);
         teacherRepository.saveAndFlush(teacher);
-        response.add("New teacher added successfully");
+        response.add("http://localhost:8080/login.html");
         return response;
     }
     @Override
@@ -49,7 +49,7 @@ public class TeacherServiceImpl implements TeacherService {
         Optional<Teacher> teacherOptional = teacherRepository.findByTeacherName(teacherDto.getTeacherName());
         if(teacherOptional.isPresent()){
             if(passwordEncoder.matches(teacherDto.getTeacherPassword(), teacherOptional.get().getTeacherPassword())){
-                response.add("User login successful");
+                response.add("http://localhost:8080/dashboard.html");
                 response.add(String.valueOf(teacherOptional.get().getTeacherId()));
             } else {
                 response.add("Username or password incorrect");
