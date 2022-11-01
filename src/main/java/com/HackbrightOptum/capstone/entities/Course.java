@@ -58,7 +58,8 @@ public class Course {
         student.getCourseList().add(this);
     }
 
-    public Course(CourseDto courseDto) {
+    public Course(CourseDto courseDto, Teacher newTeacher) {
+        teacher = newTeacher;
         if (courseDto.getCourseId() != null) {
             this.courseId = courseDto.getCourseId();
         }
@@ -67,9 +68,6 @@ public class Course {
         }
         if(courseDto.getNumberOfCoursesElapsed() != 0){
             this.numberOfCoursesElapsed = courseDto.getNumberOfCoursesElapsed();
-        }
-        if(courseDto.getTeacher() != null){
-            this.teacher = courseDto.getTeacher();
         }
 //        if(courseDto.getCourseStudentList() != null){
 //            this.studentList = courseDto.getCourseStudentList();

@@ -25,10 +25,10 @@ public class StudentController {
     private StudentService studentService;
 
     //Doesn't work due to null accommodation list, which I can't seem to fix
-    @GetMapping("/{studentId}")
-    public Optional<StudentDto> getStudentById(@RequestBody StudentDto studentDto, @PathVariable Long studentId) {
-        return studentService.getStudentById(studentId);
-    }
+//    @GetMapping("/{studentId}")
+//    public List<StudentDto> getStudentById(@PathVariable Long studentId) {
+//        return studentService.getStudentBySId(studentId);
+//    }
 //    @GetMapping("/accommodations/{studentIds}")
 //    public List<StudentAccommodation> getStudentAccomsById(@RequestBody Long studentId, @PathVariable Long studentIds){
 //        return studentService.getStudentAccomsById(studentId);

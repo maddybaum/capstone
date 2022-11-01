@@ -1,5 +1,6 @@
 package com.HackbrightOptum.capstone.dtos;
 
+import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import lombok.*;
@@ -16,7 +17,7 @@ public class StudentDto implements Serializable {
     private Long studentId;
     private String studentName;
 
-    public List<CourseDto> getStudentCourse() {
+    public List<Course> getStudentCourse() {
         return studentCourse;
     }
 
@@ -46,6 +47,9 @@ public class StudentDto implements Serializable {
 //            for (StudentAccommodationDto studentAccommodationDto : this.studentAccommodationList) {
 //                this.studentAccommodationList.add(studentAccommodation.);
 //            }
+        if(student.getCourseList() != null){
+            this.studentCourse = student.getClass();
+        }
 //
     }}
 

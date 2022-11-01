@@ -61,7 +61,7 @@ public class Student {
         this.getStudentAccommodationList().add(studentAccommodation);
     }
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.MERGE)
     private List<StudentAccommodation> studentAccommodationList;
 
     //What do I need here?

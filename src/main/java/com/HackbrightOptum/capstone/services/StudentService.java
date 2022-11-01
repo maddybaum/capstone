@@ -1,14 +1,11 @@
 package com.HackbrightOptum.capstone.services;
 
-import com.HackbrightOptum.capstone.dtos.AccommodationsDto;
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentService {
     //Do I need a method to delete a student from a course and then one to delete a student entirely?
@@ -23,7 +20,7 @@ public interface StudentService {
     @Transactional
     void updateStudentById(StudentDto studentDto);
 
-    Optional<StudentDto> getStudentById(Long studentId);
+//    abstract List<StudentDto> getStudentById(Long studentId);
 
 //    void createStudentAndAccommodation(StudentDto studentDto, AccommodationsDto accommodationsDto, StudentAccommodationDto studentAccommodationDto);
 
@@ -43,11 +40,7 @@ public interface StudentService {
 //        studentRepository.save(student);
 //    }
 
-    //Need help with this
 
-    //Need help with this
-
-    //Need help with this
     List<StudentAccommodation> getStudentAccomsById(Long studentId);
 
     //    public void createStudent(StudentDto studentDto){

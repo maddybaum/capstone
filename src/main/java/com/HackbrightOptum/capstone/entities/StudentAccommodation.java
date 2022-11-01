@@ -1,10 +1,6 @@
 package com.HackbrightOptum.capstone.entities;
 
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
-import com.HackbrightOptum.capstone.dtos.StudentDto;
-import com.HackbrightOptum.capstone.dtos.TeacherDto;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +20,14 @@ public class StudentAccommodation {
     @GeneratedValue
     @Column(name = "Student_Accommodation_ID")
     private Long studentAccommodationId;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Student_ID")
@@ -53,16 +57,35 @@ public class StudentAccommodation {
         return accommodation;
     }
 
-    public StudentAccommodation(Student student, StudentAccommodationDto studentAccommodationDto) {
-        if (student.getStudentId() != null) {
-           this.student = student;
+    public StudentAccommodation(Student newStudent, Accommodations accommodations, StudentAccommodationDto studentAccommodationDto) {
+
+        student = newStudent;
+        accommodation = accommodations;
+
+        if (accommodationFrequency != 0) {
+            this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
         }
-        if(studentAccommodationDto != null){
-                this.studentAccommodationId = studentAccommodationDto.getAccommodationId();
-                this.accommodationReceived = studentAccommodationDto.getAccommodationReceived();
-                this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
-            }
+        if (accommodationReceived != 0) {
+            this.accommodationReceived = studentAccommodationDto.getAccommodationReceived();
         }
 
+//
+//            this.studentAccommodationId = studentAccommodationDto.getAccommodationId();
+//        }
+//        if (accommodationFrequency != 0) {
+//            this.accommodationFrequency = studentAccommodationDto.getAccommodationFrequency();
+//        }
+//        if (accommodationReceived != 0) {
+//            this.accommodationReceived = studentAccommodationDto.getAccommodationReceived();
+//        }
+
+    }
+//        public StudentAccommodation(Student student, Accommodations accommodations){
+//        if(student != null){
+//            this.student = student;
+//        }
+//        if(accommodations != null){
+//            this.accommodation = accommodations.getAccommodationId();
+//        }
 
     }
