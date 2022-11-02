@@ -1,11 +1,10 @@
 package com.HackbrightOptum.capstone.services;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
-import org.springframework.stereotype.Service;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 
 public interface CourseService {
@@ -33,7 +32,7 @@ public interface CourseService {
     //            courseRepository.saveAndFlush(course);
     //        });
     //    }
-    Optional<CourseDto> getCourseById(Long courseId);
+    List<StudentDto> getCourseById(Long courseId);
 
     void increaseDaysElapsed(CourseDto courseDto);
 }

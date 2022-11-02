@@ -1,6 +1,7 @@
 package com.HackbrightOptum.capstone.controllers;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class CourseController {
 
     //works but teacher is left null
     @GetMapping("/{courseId}")
-    public Optional<CourseDto> getCoursesById(@PathVariable Long courseId){
+    public List<StudentDto> getCourseStudentsByID(@PathVariable Long courseId){
         return courseService.getCourseById(courseId);
     }
     //Works

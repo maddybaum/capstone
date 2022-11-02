@@ -1,6 +1,7 @@
 package com.HackbrightOptum.capstone.repositories;
 
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +14,9 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 //    public Optional<Student> findStudentById
 
-    Student findByStudentId(Long studentId);
+//    Student findByStudentId(Long studentId);
+//
+//    List<StudentDto> findByCourseId(Long courseId);
 
 //    List<StudentAccommodationDto> findByAccommodationId (Long accommodationId);
 }

@@ -8,14 +8,15 @@ import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import com.HackbrightOptum.capstone.repositories.*;
-import net.minidev.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -79,12 +80,25 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<StudentAccommodation> getStudentAccomsById(Long studentId) {
-//        Optional<Student> studentOptional = studentRepository.findById(studentId);
-        List<StudentAccommodation> studentAccommodationList = studentAccommodationRepository.findStudentAccommodationByStudentStudentId(studentId);
-        List accommodationList = new ArrayList<>();
-        accommodationList.add(studentAccommodationList);
-        return studentAccommodationList;
+    public List<StudentAccommodationDto> getStudentAccomsById(Long studentId) {
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (studentOptional.isPresent()) {
+            List<StudentAccommodation> studentAccommodationList = studentAccommodationRepository.findStudentAccommodationsByStudentStudentId(studentId);
+            List<StudentAccommodationDto> studentAccommodationDtoList = new ArrayList<>();
+            //use a for loop to iterate through the list
+            for(StudentAccommodation studentAccommodation : studentAccommodationList){
+                StudentAccommodationDto studentAccommodationDto = new StudentAccommodationDto();
+                studentAccommodationDto.setAccommodationId(studentAccommodation.getStudentAccommodationId());
+                studentAccommodationDto.setAccommodationReceived(studentAccommodation.getAccommodationReceived());
+                studentAccommodationDto.setAccommodationFrequency(studentAccommodation.getAccommodationFrequency());
+                studentAccommodationDto.setStudentId(studentId);
+
+                studentAccommodationDtoList.add(studentAccommodationDto);
+            }
+            return studentAccommodationDtoList;
+        }
+
+        return Collections.emptyList();
     }
 
 
@@ -106,51 +120,23 @@ public class StudentServiceImpl implements StudentService {
 //        StudentAccommodation studentAccommodation= new StudentAccommodation(studentDto);
 //        studentAccommodation.setStudent(studentDto.getStudentId());
         for (StudentAccommodationDto studentAccommodationDto1 : studentDto.getStudentAccommodationList()) {
-//            Accommodations accommodations = new Accommodations();
-//            accommodations.setAccommodationId(studentAccommodationDto.getAccommodationId());
-//            studentAccommodationDto.setAccommodationFrequency(studentDto.getStudentAccommodationList().getAccommodationFrequency());
-//            studentAccommodationDto.setAccommodationReceived(studentAccommodationDto);
+//
             Accommodations accommodations = accommodationRepository.findAccommodationsByAccommodationId(studentAccommodationDto1.getAccommodationId());
             StudentAccommodation studentAccommodation = new StudentAccommodation(student, accommodations, studentAccommodationDto);
             studentAccommodation.setAccommodationFrequency(studentAccommodationDto1.getAccommodationFrequency());
             studentAccommodation.setAccommodationReceived(studentAccommodationDto1.getAccommodationReceived());
             studentAccommodation.setStudent(student);
             studentAccommodationRepository.save(studentAccommodation);
-        for(CourseDto course1 : studentDto.getStudentCourse()){
-            Course course = courseRepository.findCourseByCourseId(course1.getCourseId());
-            course.addStudent(student);
+            for (Course course1 : studentDto.getStudentCourse()) {
+                Course course = courseRepository.findCourseByCourseId(course1.getCourseId());
+                course.addStudent(student);
 
 //            course1.setTeacher(course.getTeacher());
 //            course1.setCourseId(course.getCourseId());
 
-            courseRepository.saveAndFlush(course);
+                courseRepository.saveAndFlush(course);
+            }
         }
-        }
-////            StudentAccommodation studentAccommodation = new StudentAccommodation(student, studentDto.getStudentAccommodationList().get;
-////          Long accommodationId = accommodationRepository.findAccommodationsByAccommodationId(studentAccommodationDto.getAccommodationId());
-//            StudentAccommodation studentAccommodation;
-//            studentAccommodation = StudentAccommodation.builder()
-//                    .studentAccommodationId(studentAccommodationDto.getStudentId())
-//                    .studentAccommodationId(studentAccommodationDto.getAccommodationId())
-//                    .accommodationReceived(studentAccommodationDto.getAccommodationReceived())
-//                    .accommodationFrequency(studentAccommodationDto.getAccommodationFrequency())
-//                    .build();
-//            studentAccommodationRepository.saveAndFlush(studentAccommodation);
-//        }
-
-//            studentDto.getStudentAccommodationList(accommodationsOptional);
-//            Accommodations accommodations = new Accommodations(studentDto.getStudentAccommodationList();
-//            Accommodations accom = studentDto.getStudentAccommodationList()
-//            StudentAccommodation studentAccommodation= new StudentAccommodation(student, accommodations, studentAccommodationDto);
-//                    (student, studentAccommodation.getAccommodation());
-//            studentRepository.save(student);
-//            studentAccommodationRepository.save(studentAccommodation);
-        //create entity for the dto
-        //save to database
-
-        //set the student to the already created student
-        //get the accommodation frequency from the dto and set it to the studentAccommodation, do same for accom received
-        //Use optionals to verify they gave appropriate accom ID
         studentRepository.saveAndFlush(student);
 //        studentAccommodationRepository.saveAll(student);
     }
@@ -167,7 +153,7 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto) {
         Optional<StudentAccommodation> studentAccommodationOptional = studentAccommodationRepository.findStudentAccommodationByStudentStudentIdAndAccommodationAccommodationId(studentAccommodationDto.getStudentId(), studentAccommodationDto.getAccommodationId());
-        if(studentAccommodationOptional.isPresent()){
+        if (studentAccommodationOptional.isPresent()) {
             StudentAccommodation studentAccommodation = studentAccommodationOptional.get();
             studentAccommodation.setAccommodationReceived(studentAccommodation.getAccommodationReceived() + 1);
             studentAccommodationRepository.save(studentAccommodation);
@@ -176,24 +162,12 @@ public class StudentServiceImpl implements StudentService {
             System.out.println("The studentAccommodationOptional is failed");
         }
 
-    }}
+    }
 
-//    @Override
-//    public List<StudentDto> getStudentById(Long studentId) {
-//        System.out.println(studentId);
-////        Optional<Student> studentOptional = studentRepository.findById(studentId);
-//        //find the student in the DB based on the given ID
-////        Student student = studentRepository.findByStudentId(studentId);
-////        //create a new DTO
-//////        Optional<StudentDto> studentDtoOptional = new StudentDto(student);
-//////        //Need to check studentAccommodation repository for student ID
-////////        studentDto.setStudentAccommodationList(studentAccommodationRepository.findStudentAccommodationByStudentStudentId(studentDto.getStudentId()));
-//////        studentDto.getStudentAccommodationList().addAll(studentAccommodationRepository.findAllByStudentIdEquals(studentId));
-////        //add accommodations to the studentDto's list
-////
-////        List<StudentAccommodation> studentAccommodationsList = studentAccommodationRepository.findStudentAccommodationByStudentStudentId(studentId);
-////        return studentAccommodationsList.stream().map(studentAccommodation -> new StudentDto(student)).collect(Collectors.toList());
-//
-//    }
+    @Override
+    public List<StudentAccommodationDto> getStudentAccommodationsById(Long studentId) {
+        return null;
+    }
 
+}
 

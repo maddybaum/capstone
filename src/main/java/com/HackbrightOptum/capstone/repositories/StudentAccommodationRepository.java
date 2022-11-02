@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface StudentAccommodationRepository extends JpaRepository<StudentAccommodation, Long> {
-    List<StudentAccommodation> findStudentAccommodationByStudentStudentId(Long studentId);
+    List<StudentAccommodation> findStudentAccommodationsByStudentStudentId(Long studentId);
 
     Optional<StudentAccommodation> findStudentAccommodationByStudentStudentIdAndAccommodationAccommodationId(Long studentId, Long accommodationId);
 

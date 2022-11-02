@@ -5,6 +5,7 @@ package com.HackbrightOptum.capstone.entities;
 import com.HackbrightOptum.capstone.dtos.CourseDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -37,13 +38,13 @@ public class Course {
 
     //private Set<Student> courseRoster;
 
-    public List<Student> getStudentList() {
-        if(studentList == null){
-            studentList = new ArrayList<>();
-        }
-        return studentList;
-    }
-
+//    public List<StudentDto> getStudentList() {
+//        if(studentList == null){
+//            studentList = new ArrayList<>();
+//        }
+//        return studentList;
+//    }
+    @JsonIgnore
     @ManyToMany(mappedBy = "courseList", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Student> studentList;
 

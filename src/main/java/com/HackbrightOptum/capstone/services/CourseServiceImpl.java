@@ -1,13 +1,16 @@
 package com.HackbrightOptum.capstone.services;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
+import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.entities.Course;
+import com.HackbrightOptum.capstone.entities.Student;
 import com.HackbrightOptum.capstone.entities.Teacher;
 import com.HackbrightOptum.capstone.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -31,9 +34,10 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 
     @Autowired
     private StudentAccommodationRepository studentAccommodationRepository;
+
     @Override
     @Transactional
-    public void addCourse(CourseDto courseDto, Long teacherId){
+    public void addCourse(CourseDto courseDto, Long teacherId) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(teacherId);
         Course course = Course.builder()
                 .courseName(courseDto.getCourseName())
@@ -48,12 +52,14 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 //        course.addStudent(student2);
         courseRepository.saveAndFlush(course);
     }
+
     @Override
     @Transactional
-    public void deleteCourseById(Long courseId){
+    public void deleteCourseById(Long courseId) {
         Optional<Course> courseOptional = courseRepository.findById(courseId);
         courseOptional.ifPresent(course -> courseRepository.delete(course));
     }
+
     @Override
     @Transactional
     public void updateCourseTeacher(CourseDto courseDto, Long teacherId) {
@@ -71,18 +77,17 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     //Increases courses elapsed by 1 for each passing day
     @Override
     @Transactional
-    public void increaseCourseElapsed(CourseDto courseDto){
+    public void increaseCourseElapsed(CourseDto courseDto) {
         Course course = courseRepository.findCourseByCourseId(courseDto.getCourseId());
-            course.setNumberOfCoursesElapsed(course.getNumberOfCoursesElapsed() + 1);
-            courseRepository.save(course);
-        }
-
+        course.setNumberOfCoursesElapsed(course.getNumberOfCoursesElapsed() + 1);
+        courseRepository.save(course);
+    }
 
 
     @Override
-    public List<CourseDto> getAllCoursesByTeacherId(Long teacherId){
+    public List<CourseDto> getAllCoursesByTeacherId(Long teacherId) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(teacherId);
-        if(teacherOptional.isPresent()){
+        if (teacherOptional.isPresent()) {
             List<Course> courseList = courseRepository.findAllByTeacherEquals(teacherOptional.get());
             return courseList.stream().map(course -> new CourseDto(course)).collect(Collectors.toList());
         }
@@ -99,20 +104,38 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 //            courseRepository.saveAndFlush(course);
 //        });
 //    }
+
+    //    private Long courseId;
+//    private String courseName;
+//    private Teacher teacher;
+//    private int numberOfCoursesElapsed;
+//    private List<StudentDto> courseStudentList = new ArrayList<>();
     @Override
-    public Optional<CourseDto> getCourseById(Long courseId){
-        Optional<Course> courseOptional = courseRepository.findById(courseId);
+    public List<StudentDto> getCourseById(Long courseId) {
+            Optional<Course> courseOptional = courseRepository.findById(courseId);
+        System.out.println(courseOptional + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            List<StudentDto> studentDtoList= new ArrayList<>();
+
         if(courseOptional.isPresent()){
-            return Optional.of(new CourseDto(courseOptional.get()));
-        }
-        return Optional.empty();
+//                CourseDto courseDto = new CourseDto(course);
+//                courseDto.setCourseStudentList(studentDtoList);
+            Course course = courseOptional.get();
+                for(Student student : course.getStudentList()){
+                    StudentDto studentDto = new StudentDto(student);
+//                    studentDto.setStudentAccommodationList(student.getStudentAccommodationList());
+                    studentDtoList.add(studentDto);
+                }
+            }
+        return studentDtoList;
+
     }
 
     @Override
     public void increaseDaysElapsed(CourseDto courseDto) {
 
     }
-
-
 }
+
+
+
 

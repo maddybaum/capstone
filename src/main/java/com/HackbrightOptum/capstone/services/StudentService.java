@@ -2,7 +2,6 @@ package com.HackbrightOptum.capstone.services;
 
 import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
-import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -41,7 +40,7 @@ public interface StudentService {
 //    }
 
 
-    List<StudentAccommodation> getStudentAccomsById(Long studentId);
+    List<StudentAccommodationDto> getStudentAccomsById(Long studentId);
 
     //    public void createStudent(StudentDto studentDto){
 //        Student student = Student.builder()
@@ -60,6 +59,7 @@ void createStudent(StudentDto studentDto);
     @Transactional
     void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto);
 
+    List<StudentAccommodationDto> getStudentAccommodationsById(Long studentId);
 
 
 //    @Transactional

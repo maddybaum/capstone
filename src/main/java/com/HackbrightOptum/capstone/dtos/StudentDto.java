@@ -17,12 +17,12 @@ public class StudentDto implements Serializable {
     private Long studentId;
     private String studentName;
 
-    public List<CourseDto> getStudentCourse() {
+    public List<Course> getStudentCourse() {
         return studentCourse;
     }
 
     //    private List<Course> studentCourses = new ArrayList<>();
-    private List<CourseDto> studentCourse;
+    private List<Course> studentCourse;
 
 
 
@@ -36,7 +36,7 @@ public class StudentDto implements Serializable {
         studentAccommodationList.add(studentAccommodationDto);
     }
 
-    public StudentDto(Student student, StudentDto studentDto) {
+    public StudentDto(Student student) {
         if (student.getStudentId() != null) {
             this.studentId = student.getStudentId();
         }
@@ -48,7 +48,7 @@ public class StudentDto implements Serializable {
 //                this.studentAccommodationList.add(studentAccommodation.);
 //            }
         if(student.getCourseList() != null){
-            this.studentCourse = studentDto.getStudentCourse();
+            this.studentCourse = student.getCourseList();
         }
 //
     }}

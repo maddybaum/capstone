@@ -2,6 +2,9 @@ package com.HackbrightOptum.capstone.entities;
 
 //import com.HackbrightOptum.capstone.DTOs.StudentDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,6 +44,8 @@ public class Student {
             joinColumns = { @JoinColumn(name = "Student_ID") },
             inverseJoinColumns = { @JoinColumn(name = "Course_ID") }
     )
+//    @JsonBackReference
+//    @JsonBackReference
     private List<Course> courseList;
 
     public void addCourse(Course course){

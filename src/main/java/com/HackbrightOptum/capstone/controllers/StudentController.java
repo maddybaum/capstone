@@ -29,10 +29,10 @@ public class StudentController {
 //    public List<StudentDto> getStudentById(@PathVariable Long studentId) {
 //        return studentService.getStudentBySId(studentId);
 //    }
-//    @GetMapping("/accommodations/{studentIds}")
-//    public List<StudentAccommodation> getStudentAccomsById(@RequestBody Long studentId, @PathVariable Long studentIds){
-//        return studentService.getStudentAccomsById(studentId);
-//    }
+    @GetMapping("/accommodations/{studentId}")
+    public List<StudentAccommodationDto> getStudentAccomsById(@PathVariable Long studentId){
+        return studentService.getStudentAccomsById(studentId);
+    }
 
 
     //This works but it needs a way to add student accomms
