@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css"
+        href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100&display=swap" rel="stylesheet">
+  <link rel = "stylesheet" href = "./css/addStudent.css">
+
+  <title>Add Student</title>
+</head>
+<body>
+<div id= "mainFormContainer">
+  <form id = "addStudentForm">
+
+      <h4>Add Student</h4>
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="addStudentName" placeholder = "Student Name">
+      </div>
+      <div id = "studentCourseSelection">
+        <h5>Student Courses</h5>
+      <div id = "courseContainer" class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="coursesSelection" value="course1">
+        <label class="form-check-label" for="coursesSelection">Course 1</label>
+      </div>
+      </div>
+      <div id ="accommodationSelection">
+      <h5>Select Student Accommodations</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="accommodation1">
+        <label class="form-check-label" for="accommodation1">
+          Student requires translation in one or more languages
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="accommodation2">
+        <label class="form-check-label" for="accommodation2">
+          Student requires wheelchair accessibility for all course locations
+        </label>
+      </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="accommodation3">
+          <label class="form-check-label" for="accommodation3">
+            Student requires breaks throughout the day
+          </label>
+      </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="accommodation4">
+          <label class="form-check-label" for="accommodation4">
+            Student requires teacher check in during class
+            </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="accommodation5">
+          <label class="form-check-label" for="accommodation5">
+            Student requires a peer buddy for support during class
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="accommodation6">
+          <label class="form-check-label" for="accommodation6">
+            Student requires teacher check in using proximity
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="accommodation7">
+          <label class="form-check-label" for="accommodation7">
+            Student should be seated close to where instruction occurs
+          </label>
+        </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="accommodation8">
+        <label class="form-check-label" for="accommodation8">
+          Student requires 1.5x extended time on all assessments
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="accommodation9">
+        <label class="form-check-label" for="accommodation9">
+          Student requires 2x extended time on all assessments
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="accommodation10">
+        <label class="form-check-label" for="accommodation10">
+          Student requires access to sensory tools during classtime
+        </label>
+      </div>
+      </div>
+      <div id = "accommodationFrequency">
+        <h5>Accommodation Details</h5>
+        <div class="col-md-2">
+          <label for="accommodationFrequency" class="form-label">Frequency</label>
+          <input type="text" class="form-control" id="addStudentAccommodationFrequency">
+      </div>
+      </div>
+        <button id = "addStudent" type="submit" class="btn btn-primary">Add</button>
+  </form>
+      </div>
+</div>
+
+</body>
+</html>

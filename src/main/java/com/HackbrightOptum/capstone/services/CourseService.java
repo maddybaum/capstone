@@ -35,4 +35,6 @@ public interface CourseService {
     List<StudentDto> getCourseById(Long courseId);
 
     void increaseDaysElapsed(CourseDto courseDto);
+
+    List<CourseDto> getAllCourses();
 }

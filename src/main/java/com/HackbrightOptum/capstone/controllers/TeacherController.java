@@ -1,6 +1,7 @@
 package com.HackbrightOptum.capstone.controllers;
 
 import com.HackbrightOptum.capstone.dtos.TeacherDto;
+import com.HackbrightOptum.capstone.entities.Teacher;
 import com.HackbrightOptum.capstone.services.TeacherService;
 import com.HackbrightOptum.capstone.dtos.TeacherDto;
 import com.HackbrightOptum.capstone.services.TeacherService;
@@ -26,6 +27,7 @@ public class TeacherController {
     //End point tested and works
     @PostMapping("/register")
     public List<String> addTeacher(@RequestBody TeacherDto teacherDto){
+        System.out.println(teacherDto);
         String passHash = passwordEncoder.encode(teacherDto.getTeacherPassword());
         teacherDto.setTeacherPassword(passHash);
         return teacherService.addTeacher(teacherDto);

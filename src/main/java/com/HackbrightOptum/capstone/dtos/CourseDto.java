@@ -35,9 +35,11 @@ public class CourseDto implements Serializable {
         if(course.getNumberOfCoursesElapsed() != 0){
             this.numberOfCoursesElapsed = course.getNumberOfCoursesElapsed();
         }
-//        if(course.getStudentList() != null){
-//            this.courseStudentList = course.getStudentList();
+        if(course.getTeacher() != null){
+            this.teacher = course.getTeacher();
         }
+        }
+
 
     }
 

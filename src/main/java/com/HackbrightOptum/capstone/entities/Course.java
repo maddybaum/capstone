@@ -32,8 +32,17 @@ public class Course {
     @Column(name = "Number_Of_Courses_Elapsed")
     private int numberOfCoursesElapsed;
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     //Changed CascadeType.Merge to CascadeType.All
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JsonBackReference
     private Teacher teacher;
 
     //private Set<Student> courseRoster;
@@ -67,6 +76,9 @@ public class Course {
         }
         if(courseDto.getNumberOfCoursesElapsed() != 0){
             this.numberOfCoursesElapsed = courseDto.getNumberOfCoursesElapsed();
+        }
+        if(courseDto.getTeacher() != null){
+            this.teacher = courseDto.getTeacher();
         }
 //        if(courseDto.getCourseStudentList() != null){
 //            this.studentList = courseDto.getCourseStudentList();

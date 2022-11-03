@@ -15,6 +15,12 @@ import java.io.Serializable;
 public class TeacherDto implements Serializable {
     private Long teacherId;
     private String teacherName;
+
+
+    public void setTeacherPassword(String teacherPassword) {
+        this.teacherPassword = teacherPassword;
+    }
+
     private String teacherPassword;
 
 

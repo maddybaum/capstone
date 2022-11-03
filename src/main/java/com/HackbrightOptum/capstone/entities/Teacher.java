@@ -27,11 +27,24 @@ public class Teacher {
     @Column(name = "Teacher_Name", unique = true)
     private String teacherName;
 
+    public void setTeacherPassword(String teacherPassword) {
+        this.teacherPassword = teacherPassword;
+    }
+
     @Column(name = "Teacher_Password")
     private String teacherPassword;
 
 
+    public Set<Course> getTeacherCourses() {
+        return teacherCourses;
+    }
+
+    public void setTeacherCourses(Set<Course> teacherCourses) {
+        this.teacherCourses = teacherCourses;
+    }
+
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
     private Set<Course> teacherCourses = new HashSet<>();
 
 

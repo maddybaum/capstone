@@ -6,6 +6,7 @@ import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import com.HackbrightOptum.capstone.repositories.StudentAccommodationRepository;
+import com.HackbrightOptum.capstone.services.CourseService;
 import com.HackbrightOptum.capstone.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private CourseService courseService;
     //Doesn't work due to null accommodation list, which I can't seem to fix
 //    @GetMapping("/{studentId}")
 //    public List<StudentDto> getStudentById(@PathVariable Long studentId) {
@@ -65,5 +68,8 @@ public class StudentController {
         studentService.increaseStudentAccommodationReceived(studentAccommodationDto);
         //
     }
-
+    @GetMapping
+    public List<CourseDto> getAllCourses(){
+        return courseService.getAllCourses();
+    }
 }

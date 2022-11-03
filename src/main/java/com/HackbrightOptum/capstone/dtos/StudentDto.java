@@ -6,6 +6,7 @@ import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,7 +31,7 @@ public class StudentDto implements Serializable {
         this.studentAccommodationList = studentAccommodationList;
     }
 
-    private List<StudentAccommodationDto> studentAccommodationList;
+    private List<StudentAccommodationDto> studentAccommodationList = new ArrayList<>();
 
     public void addAccommodation(StudentAccommodationDto studentAccommodationDto){
         studentAccommodationList.add(studentAccommodationDto);

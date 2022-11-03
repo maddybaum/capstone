@@ -1,9 +1,11 @@
 package com.HackbrightOptum.capstone.services;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
+import com.HackbrightOptum.capstone.dtos.StudentAccommodationDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
 import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.entities.Student;
+import com.HackbrightOptum.capstone.entities.StudentAccommodation;
 import com.HackbrightOptum.capstone.entities.Teacher;
 import com.HackbrightOptum.capstone.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +117,7 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
             Optional<Course> courseOptional = courseRepository.findById(courseId);
         System.out.println(courseOptional + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             List<StudentDto> studentDtoList= new ArrayList<>();
+            List<StudentAccommodationDto> studentAccommodationDtoList = new ArrayList<>();
 
         if(courseOptional.isPresent()){
 //                CourseDto courseDto = new CourseDto(course);
@@ -122,9 +125,18 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
             Course course = courseOptional.get();
                 for(Student student : course.getStudentList()){
                     StudentDto studentDto = new StudentDto(student);
-//                    studentDto.setStudentAccommodationList(student.getStudentAccommodationList());
+                    for(StudentAccommodation studentAccommodation : student.getStudentAccommodationList()){
+                        System.out.println("BBBBBBBBBBBBBBBBBBBB" + studentAccommodation);
+                        System.out.println("BBBBBBBBBBBBBBBBBBBB" + student.getStudentAccommodationList());
+                        StudentAccommodationDto studentAccommodationDto = new StudentAccommodationDto(studentAccommodation);
+                        System.out.println("++++++++++++++++++++++" + studentAccommodationDto);
+                        studentDto.addAccommodation(studentAccommodationDto);
+                        System.out.println("SSSSSSSSSSSSSSSS" + studentDto);
+                    }
+
                     studentDtoList.add(studentDto);
                 }
+
             }
         return studentDtoList;
 
@@ -133,6 +145,17 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     @Override
     public void increaseDaysElapsed(CourseDto courseDto) {
 
+    }
+
+    @Override
+    public List<CourseDto> getAllCourses(){
+        List<Course> courseList = courseRepository.findAll();
+        List<CourseDto> courseDtoList = new ArrayList<>();
+        for(Course course : courseList){
+            CourseDto courseDto = new CourseDto(course);
+            courseDtoList.add(courseDto);
+        }
+        return courseDtoList;
     }
 }
 

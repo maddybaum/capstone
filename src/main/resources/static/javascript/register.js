@@ -1,23 +1,26 @@
-
+console.log("jsconnected")
 const registerUser = document.getElementById('username')
 const registerPass = document.getElementById('password')
-const registerForm = document.getElementById("registerForm")
+const registerForm = document.getElementById("registrationForm")
+const button = document.getElementById("submit")
+
 
 
 const headers = {
     'Content-Type': 'application/json'
 }
-const baseUrl = "http://local:8080/api/teachers"
+const baseUrl = "http://localhost:8080/api/teachers"
 
 const handleRegisterSubmit = async (e) => {
+
     e.preventDefault()
 
     let bodyObj = {
-        username: registerUser.value,
-        password: registerPass.value
+        teacherName: registerUser.value,
+        teacherPassword: registerPass.value
     }
-
     console.log(bodyObj);
+
 
     const response = await fetch(`${baseUrl}/register`, {
         method: "POST",
@@ -32,4 +35,4 @@ const handleRegisterSubmit = async (e) => {
         window.location.replace(responseArr[0])
     }
 }
-registerForm.addEventListener("submit", handleRegisterSubmit)
+button.addEventListener("click", handleRegisterSubmit)

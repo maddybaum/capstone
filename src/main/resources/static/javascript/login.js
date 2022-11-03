@@ -1,23 +1,24 @@
 
 const loginUser = document.getElementById('username')
 const loginPass = document.getElementById('password')
-const loginButton = document.getElementById('submit')
-const form = document.getElementById("loginForm")
+const loginButton = document.getElementById("loginSubmit")
 
 
 const headers = {
     'Content-Type': 'application/json'
 }
-const baseUrl = "http://local:8080/api/teachers"
+const baseUrl = "http://localhost:8080/api/teachers"
 
 
 const handleLoginSubmit = async (e) => {
     e.preventDefault()
 
     let bodyObj = {
-        username: loginUser.value,
-        password: loginPass.value
+        teacherName: loginUser.value,
+        teacherPassword: loginPass.value
     }
+
+    console.log(bodyObj);
 
     const response = await fetch(`${baseUrl}/login`, {
         method: "POST",
@@ -30,9 +31,15 @@ const handleLoginSubmit = async (e) => {
     const responseArr = await response.json()
 
     if (response.status === 200){
-        document.cookie = `userId=${responseArr[1]}`
+        document.cookie = `teacherId=${responseArr[1]}`
+
+        if (responseArr[0] == "Username or password incorrect"){
+            alert("Username or password incorrect ")
+        }else{
+            window.location.replace(responseArr[0])
+        }
         window.loginPass.replace(responseArr[0])
     }
 }
 
-form.addEventListener("submit", handleLoginSubmit)
+loginButton.addEventListener("click", handleLoginSubmit)

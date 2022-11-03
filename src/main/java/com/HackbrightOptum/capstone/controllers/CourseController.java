@@ -2,6 +2,7 @@ package com.HackbrightOptum.capstone.controllers;
 
 import com.HackbrightOptum.capstone.dtos.CourseDto;
 import com.HackbrightOptum.capstone.dtos.StudentDto;
+import com.HackbrightOptum.capstone.entities.Course;
 import com.HackbrightOptum.capstone.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,9 @@ public class CourseController {
     public void increaseCourseElapsed(@RequestBody CourseDto courseDto){
         courseService.increaseCourseElapsed(courseDto);
     }
-
+    @GetMapping
+    public List<CourseDto> getAllCourses(){
+        return courseService.getAllCourses();
+    }
 
 }

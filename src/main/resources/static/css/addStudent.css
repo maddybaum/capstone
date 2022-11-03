@@ -1,0 +1,27 @@
+
+body{
+   background-color: #DBE9EE;
+}
+#mainFormContainer{
+    background-color: #4F6D7A;
+    width: 50%;
+    padding-left:10%;
+    margin-left: 25%;
+    margin-top: 7%;
+    font: 600 16px/18px 'Open Sans', sans-serif;
+    border-radius: 10%;
+
+}
+
+#mainFormContainer button{
+    margin-left: 35%;
+    background-color: #166088;
+
+}
+h4{
+    margin-left: 25%;
+}
+div{
+    padding: 0.3%;
+}
+

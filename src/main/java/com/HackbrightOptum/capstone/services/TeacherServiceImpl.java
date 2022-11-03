@@ -38,7 +38,12 @@ public class TeacherServiceImpl implements TeacherService {
     @Transactional
     public List<String> addTeacher(TeacherDto teacherDto){
         List<String> response = new ArrayList<>();
-        Teacher teacher = new Teacher(teacherDto);
+//        Teacher teacher = new Teacher(teacherDto);
+        Teacher teacher = Teacher.builder()
+                .teacherName(teacherDto.getTeacherName())
+                .teacherPassword(teacherDto.getTeacherPassword())
+                .build();
+
         teacherRepository.saveAndFlush(teacher);
         response.add("http://localhost:8080/login.html");
         return response;
