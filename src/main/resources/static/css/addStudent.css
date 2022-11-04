@@ -1,12 +1,12 @@
 
 body{
-   /*background-color: #4F6D7A;*/
-    background-color: red;
+   background-color: #4F6D7A;
 
 }
 #mainFormContainer{
     background-color: #DBE9EE;
     width: 50%;
+    height-min: 500px;
     font-family: 'Montserrat';
     border-radius: 10%;
     text-align: left;
@@ -19,6 +19,7 @@ body{
     transform: translate(-50%, -50%);
     background-color: #166088;
     margin: auto;
+    float: right;
 }
 
 button{
@@ -43,13 +44,17 @@ div{
 }
 
 .courseOptions{
-    margin-left: 50%;
+    margin-left: 15%;
 }
 
 tbody{
-    margin-left: 50%;
+    margin-left: 5%;
 }
 
-table td{
-    margin-left: 50%;
+.form-check-label{
+    margin-left: 5%;
+}
+
+tbody input{
+    margin-left: 2%;
 }

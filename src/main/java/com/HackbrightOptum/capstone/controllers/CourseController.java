@@ -42,9 +42,9 @@ public class CourseController {
         return courseService.getCourseById(courseId);
     }
     //Works
-    @PutMapping
-    public void increaseCourseElapsed(@RequestBody CourseDto courseDto){
-        courseService.increaseCourseElapsed(courseDto);
+    @PutMapping("/{courseId}")
+    public void increaseCourseElapsed(@PathVariable Long courseId){
+        courseService.increaseCourseElapsed(courseId);
     }
     @GetMapping
     public List<CourseDto> getAllCourses(){

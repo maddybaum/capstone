@@ -76,11 +76,16 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
         }
     }
 
+    @Override
+    public void increaseCourseElapsed(CourseDto courseDto) {
+
+    }
+
     //Increases courses elapsed by 1 for each passing day
     @Override
     @Transactional
-    public void increaseCourseElapsed(CourseDto courseDto) {
-        Course course = courseRepository.findCourseByCourseId(courseDto.getCourseId());
+    public void increaseCourseElapsed(Long courseId) {
+        Course course = courseRepository.findCourseByCourseId(courseId);
         course.setNumberOfCoursesElapsed(course.getNumberOfCoursesElapsed() + 1);
         courseRepository.save(course);
     }

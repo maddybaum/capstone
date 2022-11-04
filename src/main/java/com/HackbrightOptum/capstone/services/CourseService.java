@@ -21,6 +21,10 @@ public interface CourseService {
     @Transactional
     void increaseCourseElapsed(CourseDto courseDto);
 
+    //Increases courses elapsed by 1 for each passing day
+    @Transactional
+    void increaseCourseElapsed(Long courseId);
+
     List<CourseDto> getAllCoursesByTeacherId(Long teacherId);
 
     //    @Override

@@ -96,6 +96,7 @@ async function addStudent(obj) {
             //return getStudents(teacherId);
         }
     }
+    document.location.href = 'http://localhost:8080/dashboard.html'
 }
 
 //Use this method to populate the dashboard with students

@@ -521,3 +521,15 @@ nav ul,nav li {
 #classes{
     margin-left: 20%;
 }
+
+#addCourseModal{
+    background-color: #DBE9EE;
+    font-family: 'Montserrat';
+    border-radius: 10%;
+    height: 300px;
+    width: 400px;
+}
+
+#addCourseModal h4{
+    text-align: center;
+}

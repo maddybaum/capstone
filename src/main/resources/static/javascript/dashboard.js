@@ -7,6 +7,8 @@ const getAllStudentsButton = document.getElementById("getAllStudents")
 const studentTable = document.getElementById("studentTable")
 const studentTableBody = document.getElementById("studentTableBody")
 const coursesTableBody = document.getElementById("coursesTableBody")
+const addCourseModal = document.getElementById('addCourseModal')
+const addCourseButton = document.getElementById('addCourseButton')
 //
 const headers = {
     'Content-Type': 'application/json'
@@ -15,12 +17,40 @@ const headers = {
 const baseUrl = "http://localhost:8080/api/course"
 
 window.onload = function(){
+    addCourseModal.style.display = 'none'
     getTeacherCourses(1);
     getAllStudents();
     //Get teachers courses to populate
     //Get teachers students to populate
 }
 //Need to fix so that it returns values for the user logged in
+
+function closeAddCourseModal(){
+    addCourseModal.style.display = "none"
+}
+
+function openAddCourseModal(){
+    addCourseModal.style.display = "block"
+}
+
+async function increaseCourseElapsed(courseId){
+    let bodyObj = {
+        courseId: courseId,
+    }
+    //make object and pass 2 IDs in
+    //pass in param and body
+    //param is student id, and body is the info on which accommodation to edit
+    const response = await fetch(`http://localhost:8080/api/course/${courseId}`, {
+        method: "PUT",
+        headers: {
+            'Content-type': 'application/json'
+        }
+
+    })
+        .catch(err => console.error(err))
+}
+
+
 async function getTeacherCourses(teacherId) {
       await fetch(`http://localhost:8080/api/course/teacher/${teacherId}`, {
         method: "GET",
@@ -30,7 +60,7 @@ async function getTeacherCourses(teacherId) {
         .then(data => {
             data.forEach(elem => {
                 let tableRow = document.createElement("tr")
-                tableRow.innerHTML = `<th scope = "row" class = ${elem.courseId}>${elem.courseId}</th>
+                tableRow.innerHTML = `<th scope = "row" class = "${elem.courseId}">${elem.courseId}</th>
                                  <td>${elem.courseName}</td>
                                   <td id = "${elem.courseId}received">${elem.numberOfCoursesElapsed}</td>
 
@@ -49,8 +79,6 @@ function openAddStudent(){
 document.location.href = 'http://localhost:8080/addStudent.html'
 }
 
-let accommodationId = document.getElementById()
-
 async function logAccommodation(studentId){
     let bodyObj = {
         studentId: studentId,
@@ -64,6 +92,7 @@ async function logAccommodation(studentId){
             'Content-type': 'application/json'
         }
     })
+
         .catch(err => console.error(err))
 }
 
@@ -74,7 +103,7 @@ async function deleteStudent(studentId){
     })
         .catch(err => console.error(err))
 
-    return getAllStudents();
+
 }
 
 async function getAllStudents(){
@@ -96,7 +125,7 @@ async function getAllStudents(){
                                   <td id = "${elem.accommodationReceived}received">${elem.studentAccommodationList[0].accommodationReceived}</td>
 
                                  <td id = "${elem.studentId}frequency">${elem.studentAccommodationList[0].accommodationFrequency}</td>
-                                 <td>percentage</td>
+                                 <td>${elem.accommodationReceived}.value/${elem.accommodationFrequency}.value</td>
                                  <td onClick = "logAccommodation(${elem.studentAccommodationList[0].studentAccommodationId})"><button type="button" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
             </svg></button></td>
@@ -118,3 +147,4 @@ async function getAllStudents(){
 getTeacherCoursesButton.addEventListener("click", getTeacherCourses)
 addStudentButton.addEventListener("click", openAddStudent)
 getAllStudentsButton.addEventListener("click", getAllStudents)
+addCourseButton.addEventListener('click', openAddCourseModal)

@@ -1,0 +1,16 @@
+#mainFormContainer{
+    background-color: #DBE9EE;
+    font-family: 'Montserrat';
+    border-radius: 10%;
+    height: 300px;
+    width: 400px;
+}
+
+body{
+    background-color: #4F6D7A;
+
+}
+
+h4{
+    text-align: center;
+}
