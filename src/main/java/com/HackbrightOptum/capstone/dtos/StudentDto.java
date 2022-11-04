@@ -25,15 +25,13 @@ public class StudentDto implements Serializable {
     //    private List<Course> studentCourses = new ArrayList<>();
     private List<Course> studentCourse;
 
-
-
     public void setStudentAccommodationList(List<StudentAccommodationDto> studentAccommodationList) {
         this.studentAccommodationList = studentAccommodationList;
     }
 
     private List<StudentAccommodationDto> studentAccommodationList = new ArrayList<>();
 
-    public void addAccommodation(StudentAccommodationDto studentAccommodationDto){
+    public void addAccommodation(StudentAccommodationDto studentAccommodationDto) {
         studentAccommodationList.add(studentAccommodationDto);
     }
 
@@ -44,13 +42,16 @@ public class StudentDto implements Serializable {
         if (student.getStudentName() != null) {
             this.studentName = student.getStudentName();
         }
-//        if(student.getStudentAccommodationList() != null){
-//            for (StudentAccommodationDto studentAccommodationDto : this.studentAccommodationList) {
-//                this.studentAccommodationList.add(studentAccommodation.);
-//            }
-        if(student.getCourseList() != null){
-            this.studentCourse = student.getCourseList();
-        }
+        if (student.getStudentAccommodationList() != null) {
+            for (StudentAccommodation studentAccommodation : student.getStudentAccommodationList()) {
+                StudentAccommodationDto studentAccommodationDto = new StudentAccommodationDto(studentAccommodation);
+                this.addAccommodation(studentAccommodationDto);
+            }
+            if (student.getCourseList() != null) {
+                this.studentCourse = student.getCourseList();
+            }
 //
-    }}
+        }
+    }
+}
 

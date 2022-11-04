@@ -27,33 +27,17 @@ public class StudentController {
 
     @Autowired
     private CourseService courseService;
-    //Doesn't work due to null accommodation list, which I can't seem to fix
-//    @GetMapping("/{studentId}")
-//    public List<StudentDto> getStudentById(@PathVariable Long studentId) {
-//        return studentService.getStudentBySId(studentId);
-//    }
+
     @GetMapping("/accommodations/{studentId}")
     public List<StudentAccommodationDto> getStudentAccomsById(@PathVariable Long studentId){
         return studentService.getStudentAccomsById(studentId);
     }
 
 
-    //This works but it needs a way to add student accomms
     @PostMapping("/newStudent")
     public void createStudent(@RequestBody StudentDto studentDto) {
         studentService.createStudent(studentDto);
         System.out.println(studentDto);
-    }
-
-//    @PutMapping
-//    public void updateStudentById(@RequestBody StudentDto studentDto) {
-//        studentService.updateStudentById(studentDto);
-//    }
-
-    //Not sure if I wrote endpoint correctly
-    @DeleteMapping("course/{courseId}")
-    public void deleteStudentFromCourse(@PathVariable CourseDto courseDto, @RequestBody StudentDto studentDto) {
-        studentService.deleteStudentFromCourse(courseDto.getCourseId(), studentDto.getStudentId());
     }
 
     @DeleteMapping("/{studentId}")
@@ -62,14 +46,19 @@ public class StudentController {
     }
 
     //This needs to be fixed
-    @PutMapping("accomsReceived/{studentId}")
-    public void increaseStudentAccommodationReceived(@PathVariable Long studentId, @RequestBody StudentAccommodationDto studentAccommodationDto) {
-        System.out.println("AAAAAAAAAAAAAAAAAA" + studentAccommodationDto);
-        studentService.increaseStudentAccommodationReceived(studentAccommodationDto);
+    @PutMapping("accomsReceived/{studentAccommodationId}")
+    public void increaseStudentAccommodationReceived(@PathVariable Long studentAccommodationId) {
+        studentService.increaseStudentAccommodationReceived(studentAccommodationId);
         //
     }
-    @GetMapping
+
+
+    @GetMapping("/allCourses")
     public List<CourseDto> getAllCourses(){
         return courseService.getAllCourses();
     }
-}
+
+@GetMapping
+public List<StudentDto> getAllStudents(){
+    return studentService.getAllStudents();
+}}

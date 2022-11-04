@@ -61,6 +61,11 @@ void createStudent(StudentDto studentDto);
 
     List<StudentAccommodationDto> getStudentAccommodationsById(Long studentId);
 
+    @Transactional
+    void increaseStudentAccommodationReceived(Long studentAccommodationId);
+
+    List<StudentDto> getAllStudents();
+
 
 //    @Transactional
 //    void createStudent(StudentDto studentDto);

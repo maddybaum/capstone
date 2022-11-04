@@ -1,27 +1,55 @@
 
 body{
-   background-color: #DBE9EE;
+   /*background-color: #4F6D7A;*/
+    background-color: red;
+
 }
 #mainFormContainer{
-    background-color: #4F6D7A;
+    background-color: #DBE9EE;
     width: 50%;
-    padding-left:10%;
-    margin-left: 25%;
-    margin-top: 7%;
-    font: 600 16px/18px 'Open Sans', sans-serif;
+    font-family: 'Montserrat';
     border-radius: 10%;
-
+    text-align: left;
+    margin: auto;
 }
 
 #mainFormContainer button{
-    margin-left: 35%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     background-color: #166088;
+    margin: auto;
+}
 
+button{
+    text-align: center;
 }
 h4{
-    margin-left: 25%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 div{
     padding: 0.3%;
 }
 
+#addStudentName{
+    text-align: center;
+    margin-left: 47%;
+}
+
+.frequencyInput{
+    width: 10%;
+}
+
+.courseOptions{
+    margin-left: 50%;
+}
+
+tbody{
+    margin-left: 50%;
+}
+
+table td{
+    margin-left: 50%;
+}
