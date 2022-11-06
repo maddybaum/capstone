@@ -24,7 +24,7 @@ public class StudentAccommodationDto implements Serializable {
     private String accommodationDescription;
     private int accommodationFrequency;
     private int accommodationReceived;
-
+    private int coursesElapsed;
 
     public StudentAccommodationDto(StudentAccommodation studentAccommodation) {
         if (studentAccommodation.getStudentAccommodationId() != null) {
@@ -51,5 +51,4 @@ public class StudentAccommodationDto implements Serializable {
         if(studentAccommodation.getAccommodation().getAccommodationName() != null){
             this.accommodationName = studentAccommodation.getAccommodation().getAccommodationName();
         }
-        }
-    }
+    }}

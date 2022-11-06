@@ -102,21 +102,6 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
         return Collections.emptyList();
     }
 
-//    @Override
-//    @Transactional
-//    public void updateCourseStudents(CourseDto courseDto){
-//        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
-//        courseOptional.ifPresent(course -> {
-//            course.setCourseStudents(courseDto.getCourseStudentSet());
-//            courseRepository.saveAndFlush(course);
-//        });
-//    }
-
-    //    private Long courseId;
-//    private String courseName;
-//    private Teacher teacher;
-//    private int numberOfCoursesElapsed;
-//    private List<StudentDto> courseStudentList = new ArrayList<>();
     @Override
     public List<StudentDto> getCourseById(Long courseId) {
             Optional<Course> courseOptional = courseRepository.findById(courseId);

@@ -7,7 +7,7 @@ const getAllStudentsButton = document.getElementById("getAllStudents")
 const studentTable = document.getElementById("studentTable")
 const studentTableBody = document.getElementById("studentTableBody")
 const coursesTableBody = document.getElementById("coursesTableBody")
-const addCourseModal = document.getElementById('addCourseModal')
+const addCourseModal = document.querySelector('.modal-content')
 const addCourseButton = document.getElementById('addCourseButton')
 //
 const headers = {
@@ -17,8 +17,8 @@ const headers = {
 const baseUrl = "http://localhost:8080/api/course"
 
 window.onload = function(){
-    addCourseModal.style.display = 'none'
-    getTeacherCourses(1);
+closeAddCourseModal();
+getTeacherCourses(1);
     getAllStudents();
     //Get teachers courses to populate
     //Get teachers students to populate
@@ -125,7 +125,7 @@ async function getAllStudents(){
                                   <td id = "${elem.accommodationReceived}received">${elem.studentAccommodationList[0].accommodationReceived}</td>
 
                                  <td id = "${elem.studentId}frequency">${elem.studentAccommodationList[0].accommodationFrequency}</td>
-                                 <td>${elem.accommodationReceived}.value/${elem.accommodationFrequency}.value</td>
+                                 <td>percentage</td>
                                  <td onClick = "logAccommodation(${elem.studentAccommodationList[0].studentAccommodationId})"><button type="button" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
             </svg></button></td>

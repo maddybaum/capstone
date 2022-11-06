@@ -58,7 +58,6 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
-    //should update be all fields at once or independently?
     @Override
     @Transactional
     public void updateStudentById(StudentDto studentDto) {
@@ -69,14 +68,6 @@ public class StudentServiceImpl implements StudentService {
         });
     }
 
-//    @Override
-//    public Optional<StudentDto> getStudentById(Long studentId){
-//        Optional<Student> studentOptional = studentRepository.findById(studentId);
-//        if(studentOptional.isPresent()){
-//            return Optional.of(new StudentDto(studentOptional.get()));
-//        }
-//        return null;
-//    }
 
     @Override
     public List<StudentAccommodationDto> getStudentAccomsById(Long studentId) {
@@ -109,25 +100,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public void createStudent(StudentDto studentDto) {
-//        Student student = Student.builder()
-//                .studentId(studentDto.getStudentId())
-//                .build();
+
         Student student = new Student(studentDto);
         StudentAccommodationDto studentAccommodationDto = new StudentAccommodationDto();
-//            Accommodations accommodations = accommodationRepository.findAccommodationsByAccommodationId(studentDto.getStudentAccommodationList();
-//        for(StudentAccommodation studentAccommodation : student.getStudentAccommodationList()){
-//            StudentAccommodationDto studentAccommodationDto1 = new StudentAccommodationDto(studentAccommodation);
-//            studentAccommodationDto.setStudentId(studentAccommodation.getStudent().getStudentId());
-//            studentAccommodationDto.setAccommodationName(studentAccommodation.getAccommodation().getAccommodationName());
-//            studentAccommodationDto.setAccommodationId();
-//        }
-
-//        student.setStudentId(studentDto.getStudentId());
-//        StudentAccommodation studentAccommodation = new StudentAccommodation(student, )
-//        Long accommodationId =
-//        Accommodations accommodations = new Accommodations(studentDto.getStudentAccommodationList());
-//        StudentAccommodation studentAccommodation= new StudentAccommodation(studentDto);
-//        studentAccommodation.setStudent(studentDto.getStudentId());
         for (StudentAccommodationDto studentAccommodationDto1 : studentDto.getStudentAccommodationList()) {
 //
             Accommodations accommodations = accommodationRepository.findAccommodationsByAccommodationId(studentAccommodationDto1.getAccommodationId());
@@ -156,12 +131,6 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
-
-//    public void addStudentToCourse()
-//    @Override
-//    public void increaseStudentAccommodationReceived(StudentAccommodationDto studentAccommodationDto) {
-//
-//    }
 
 
 
