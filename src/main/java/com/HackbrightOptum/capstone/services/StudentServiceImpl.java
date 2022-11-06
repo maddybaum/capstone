@@ -33,18 +33,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentAccommodationRepository studentAccommodationRepository;
-
-//    @Override
-//    public void createStudent(StudentDto studentDto){
-//        Student student = new Student(studentDto);
-//        studentRepository.saveAndFlush(studentDto);
-//    }
-
-    //Do I need a method to delete a student from a course and then one to delete a student entirely?
     @Override
     @Transactional
     public void deleteStudentById(Long studentId) {
         List<StudentAccommodation> studentAccommodationList = studentAccommodationRepository.findStudentAccommodationsByStudentStudentId(studentId);
+
         for (StudentAccommodation studentAccommodation : studentAccommodationList) {
             studentAccommodationRepository.delete(studentAccommodation);
         }
@@ -86,7 +79,6 @@ public class StudentServiceImpl implements StudentService {
                 studentAccommodationDto.setStudentAccommodationId(studentAccommodation.getStudentAccommodationId());
                 studentAccommodationDto.setAccommodationReceived(studentAccommodation.getAccommodationReceived());
                 studentAccommodationDto.setAccommodationFrequency(studentAccommodation.getAccommodationFrequency());
-//                studentAccommodationDto.setStudentId(studentId);
 
                 studentAccommodationDtoList.add(studentAccommodationDto);
             }
@@ -116,9 +108,6 @@ public class StudentServiceImpl implements StudentService {
             for (Course course1 : studentDto.getStudentCourse()) {
                 Course course = courseRepository.findCourseByCourseId(course1.getCourseId());
                 course.addStudent(student);
-
-//            course1.setTeacher(course.getTeacher());
-//            course1.setCourseId(course.getCourseId());
 
                 courseRepository.saveAndFlush(course);
             }

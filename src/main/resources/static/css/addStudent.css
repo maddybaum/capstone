@@ -6,7 +6,7 @@ body{
 #mainFormContainer{
     background-color: #DBE9EE;
     width: 50%;
-    height-min: 500px;
+    height: 800px;
     font-family: 'Montserrat';
     border-radius: 10%;
     text-align: left;
@@ -14,10 +14,10 @@ body{
 }
 
 #mainFormContainer button{
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    -ms-transform: translate(-100%, -50%);
+    transform: translate(-100%, -50%);
     background-color: #166088;
+    margin-right: 50%;
     margin: auto;
     float: right;
 }
@@ -40,21 +40,20 @@ div{
 }
 
 .frequencyInput{
-    width: 10%;
+    width: 13%;
 }
 
-.courseOptions{
-    margin-left: 15%;
-}
 
-tbody{
-    margin-left: 5%;
-}
+
+/*tbody{*/
+/*    margin-left: 5%;*/
+/*}*/
 
 .form-check-label{
     margin-left: 5%;
 }
 
-tbody input{
-    margin-left: 2%;
+#studentCourses{
+    margin-left: 5%;
+    width: 70%;
 }

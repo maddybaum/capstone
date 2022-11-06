@@ -86,8 +86,6 @@ async function addStudent(obj) {
 
         const response = await fetch(`http://localhost:8080/api/student/newStudent`, {
             method: "POST",
-            //do I put body here?
-            //Need to add selected courses and accommodations
             body: JSON.stringify(studentObj),
             headers: headers
         })

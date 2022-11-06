@@ -14,12 +14,7 @@ public interface CourseService {
     @Transactional
     void deleteCourseById(Long courseId);
 
-    @Transactional
-    void updateCourseTeacher(CourseDto courseDto, Long teacherId);
 
-    //Increases courses elapsed by 1 for each passing day
-    @Transactional
-    void increaseCourseElapsed(CourseDto courseDto);
 
     //Increases courses elapsed by 1 for each passing day
     @Transactional
@@ -27,18 +22,8 @@ public interface CourseService {
 
     List<CourseDto> getAllCoursesByTeacherId(Long teacherId);
 
-    //    @Override
-    //    @Transactional
-    //    public void updateCourseStudents(CourseDto courseDto){
-    //        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
-    //        courseOptional.ifPresent(course -> {
-    //            course.setCourseStudents(courseDto.getCourseStudentSet());
-    //            courseRepository.saveAndFlush(course);
-    //        });
-    //    }
     List<StudentDto> getCourseById(Long courseId);
 
-    void increaseDaysElapsed(CourseDto courseDto);
 
     List<CourseDto> getAllCourses();
 }

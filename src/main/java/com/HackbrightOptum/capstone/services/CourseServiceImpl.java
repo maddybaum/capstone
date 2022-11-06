@@ -28,15 +28,6 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     @Autowired
     private TeacherRepository teacherRepository;
 
-    @Autowired
-    private StudentRepository studentRepository;
-
-    @Autowired
-    private AccommodationRepository accommodationRepository;
-
-    @Autowired
-    private StudentAccommodationRepository studentAccommodationRepository;
-
     @Override
     @Transactional
     public void addCourse(CourseDto courseDto, Long teacherId) {
@@ -48,10 +39,6 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 
         teacherOptional.ifPresent(course::setTeacher);
 
-//        Student student1 = Student.builder().studentName("Fred").build();
-//        Student student2 = Student.builder().studentName("Bob").build();
-//        course.addStudent(student1);
-//        course.addStudent(student2);
         courseRepository.saveAndFlush(course);
     }
 
@@ -60,25 +47,6 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     public void deleteCourseById(Long courseId) {
         Optional<Course> courseOptional = courseRepository.findById(courseId);
         courseOptional.ifPresent(course -> courseRepository.delete(course));
-    }
-
-    @Override
-    @Transactional
-    public void updateCourseTeacher(CourseDto courseDto, Long teacherId) {
-        Optional<Course> courseOptional = courseRepository.findById(courseDto.getCourseId());
-        Optional<Teacher> teacherOptional = teacherRepository.findById(teacherId);
-        if (teacherOptional.isPresent()) {
-            courseOptional.ifPresent(course -> {
-                course.setTeacher(teacherOptional.get());
-                courseRepository.saveAndFlush(course);
-
-            });
-        }
-    }
-
-    @Override
-    public void increaseCourseElapsed(CourseDto courseDto) {
-
     }
 
     //Increases courses elapsed by 1 for each passing day
@@ -105,23 +73,15 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
     @Override
     public List<StudentDto> getCourseById(Long courseId) {
             Optional<Course> courseOptional = courseRepository.findById(courseId);
-        System.out.println(courseOptional + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             List<StudentDto> studentDtoList= new ArrayList<>();
-            List<StudentAccommodationDto> studentAccommodationDtoList = new ArrayList<>();
 
         if(courseOptional.isPresent()){
-//                CourseDto courseDto = new CourseDto(course);
-//                courseDto.setCourseStudentList(studentDtoList);
             Course course = courseOptional.get();
                 for(Student student : course.getStudentList()){
                     StudentDto studentDto = new StudentDto(student);
                     for(StudentAccommodation studentAccommodation : student.getStudentAccommodationList()){
-                        System.out.println("BBBBBBBBBBBBBBBBBBBB" + studentAccommodation);
-                        System.out.println("BBBBBBBBBBBBBBBBBBBB" + student.getStudentAccommodationList());
                         StudentAccommodationDto studentAccommodationDto = new StudentAccommodationDto(studentAccommodation);
-                        System.out.println("++++++++++++++++++++++" + studentAccommodationDto);
                         studentDto.addAccommodation(studentAccommodationDto);
-                        System.out.println("SSSSSSSSSSSSSSSS" + studentDto);
                     }
 
                     studentDtoList.add(studentDto);
@@ -129,11 +89,6 @@ public class CourseServiceImpl implements com.HackbrightOptum.capstone.services.
 
             }
         return studentDtoList;
-
-    }
-
-    @Override
-    public void increaseDaysElapsed(CourseDto courseDto) {
 
     }
 
