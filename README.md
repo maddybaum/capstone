@@ -21,3 +21,4 @@ ___
  <img src = "/Screen Shot 2022-11-06 at 5.22.13 PM.png" alt = "Project screenshot"
       style= "display: inline-block; margin: 0 auto; max-width: 600px">
 </p>
+Upon registering, teachers can login and will be taken to their dashboard page. Here they can add students and courses, and mark when accommodations have been given. 
