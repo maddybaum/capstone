@@ -5,9 +5,9 @@
 
 ### Built With
 ___
-(https://skills.thijs.gg/icons?i=js,html,css,java,postgres)](https://skills.thijs.gg)
 
-[![My Skills](https://skills.thijs.gg/icons?i=js,html,css,wasm)](https://skills.thijs.gg)
+
+[![My Skills](https://skills.thijs.gg/icons?i=js,html,css,java,postgres,nodejs)](https://skills.thijs.gg)
 
 ### About the Project
 ___
